@@ -4,6 +4,7 @@
 
     <div class="container login-form">
 
+      <?php $msg= login();?>
 
 
         <form action="" method="post">
@@ -11,13 +12,13 @@
                 <h2>সাইন ইন</h2>
             </div>
             <div class="login">
-
+                    <p class='text-center' style="color: red;"><?php echo $msg; ?></p>
                 <div class="field">
-                    <input type="text" placeholder="ইউজারনেম..." class="">
+                    <input type="text" name="username" placeholder="ইউজারনেম..." class="">
                 </div>
 
                 <div class="field">
-                    <input type="password" placeholder="পাসওয়ার্ড..." name="" class="">
+                    <input type="password" placeholder="পাসওয়ার্ড..." name="password" class="">
                 </div>
                 <div class="submit-btn">
                     <input type="submit" name="login" value="সাবমিট" class="">

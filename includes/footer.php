@@ -1,7 +1,6 @@
-<hr />
     <footer class="footer">
         <div class="container">
-            <p>কপিরাইট &copy স্টোরি বক্স, ২০২৩</p>
+            <p class='text-center'>কপিরাইট &copy স্টোরি বক্স, ২০২৩</p>
         </div>
 
     </footer>
