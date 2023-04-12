@@ -1,0 +1,121 @@
+
+.add_post_field input{
+    width: 100%;
+    max-width: 60%;
+    padding: 0 30px;
+    border-radius: 50px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    text-transform: capitalize;
+    position: relative;
+    color: #333;
+    height: 40px;
+    box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.231) ;
+    background-color: #ebebeb40;
+   
+}
+.add_post_field textarea{
+    padding: 10px;
+    width: 100%;
+    max-width: 60%;
+    border: none;
+    outline: none;
+    color: #333;
+    box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.231) ;
+    background-color: #ebebeb40;
+}
+.add-post input:focus{
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7) ;
+    transition: 0.5s;
+}
+.add-post{
+    margin: 0 auto;
+    text-align: center;
+}
+.add_post_field{
+    margin: 10px;
+}
+.story_title{
+    text-align: center;
+}
+.add_post_field_btn input{
+    width: 100%;
+    max-width: 60vh;
+    padding: 0 30px;
+    border-radius: 50px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    text-transform: capitalize;
+    position: relative;
+    color: #ffffff;
+    height: 40px;
+    box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.509) ;
+    background-color: #003cff4f;
+}
+.add_post_field_btn input:hover{
+    background-color: #ebebeb81;
+}
+.add_post_field_btn input:hover{
+    background-color: #3b69ff4f;
+}
+.post_LatestStory .add-post{
+   
+    margin-bottom: 20%;
+}
+.dropdown{
+    width: 100%;
+    max-width: 60%;
+    padding: 0 30px;
+    border-radius: 50px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    text-transform: capitalize;
+    position: relative;
+    color: #333;
+    height: 40px;
+    box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.231) ;
+    background-color: #ebebeb40;
+}
+
+input[type='file']{
+display: none;
+}
+.label{
+    width: 100%;
+    max-width: 60%;
+    padding: 0 30px;
+    border-radius: 50px;
+    border: none;
+    font-size: 16px;
+    text-align: left;
+    padding-top: 10px;
+    outline: none;
+    text-transform: capitalize;
+    position: relative;
+    color: #333;
+    height: 40px;
+    box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.231) ;
+    background-color: #ebebeb40;
+}
+.label2{
+    width: 100%;
+    max-width: 60vh;
+    text-align: left;
+    padding: 10px 10px;
+    border-radius: 50px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    text-transform: capitalize;
+    position: relative;
+    color: #333;
+    height: 40px;
+    box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.231) ;
+    background-color: #ebebeb40;
+}
+.label:hover{
+    background-color: #ebebeb81;
+}

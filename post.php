@@ -6,30 +6,36 @@
 
         <div class="post_content">
 
+                <?php
+                    if(isset($_GET['view'])){
+                        $post_id=$_GET['view'];
 
+                        $query="SELECT * FROM posts WHERE post_id='{$post_id}'";
+                        $run=mysqli_query($connection,$query);
+                        confirmation($run);
+                        while($data=mysqli_fetch_assoc($run)){
+                            $post_titile=$data['post_title'];
+                            $post_content=$data['post_content'];
+                            $post_author=$data['post_author'];
+                            $post_date=$data['post_date'];
+                            $post_image=$data['post_image'];
+                        }
+                    }
+                
+                
+                ?>
             <div class="post_description">
-                <h2 class="post_title">আদায় কাঁচকলায়</h2>
+                <h2 class="post_title"><?php echo $post_titile ?></h2>
                 <p class="post_author">
-                    পোস্ট করেছেনঃ তারিকুল ইসলাম<span class="time"> ১০ঃ১০ঃ১০</span>
+                    পোস্ট করেছেনঃ <?php echo $post_author ?><span class="time"> <?php echo $post_date ?></span>
                 </p>
                 <p class="main-text">
-                    গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                    রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                    গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                    নিউজবাংলার গল্পের পাতা।
-                    গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                    রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                    গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                    নিউজবাংলার গল্পের পাতা।
-                    গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                    রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                    গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                    নিউজবাংলার গল্পের পাতা।
+                    <?php echo $post_content ?>
                 </p>
 
             </div>
             <div class="post_card-img">
-                <img class="img-responsive" src="images/i1.jpg" alt="" />
+                <img class="img-responsive" src="images/<?php echo $post_image ?>" alt="img" />
             </div>
         </div>
 

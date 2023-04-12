@@ -14,16 +14,19 @@
             <div class="login">
                     <p class='text-center' style="color: red;"><?php echo $msg; ?></p>
                 <div class="field">
-                    <input type="text" name="username" placeholder="ইউজারনেম..." class="">
+                    <input type="text" name="username" placeholder="ইউজারনেম..." class="" required>
                 </div>
 
                 <div class="field">
-                    <input type="password" placeholder="পাসওয়ার্ড..." name="password" class="">
+                    <input type="password" placeholder="পাসওয়ার্ড..." name="password" class="" required>
                 </div>
                 <div class="submit-btn">
-                    <input type="submit" name="login" value="সাবমিট" class="">
+                    <input type="submit" name="login" value="সাবমিট" class="" >
                 </div>
-
+                <div class="reg">
+                <a  href="registration.php">একাউন্ট তৈরি করুন...</a>
+                </div>
+                
             </div>
 
 

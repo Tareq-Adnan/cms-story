@@ -31,7 +31,6 @@
     border: none;
     font-size: 16px;
     outline: none;
-    text-transform: capitalize;
     position: relative;
     color: #333;
     height: 40px;
@@ -78,7 +77,16 @@
     background-color: #003cff4f;
 }
 
-.post_LatestStory .login-form{
-   
-    margin-bottom: 20%;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+

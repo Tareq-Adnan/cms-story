@@ -1,4 +1,4 @@
-<?php include("includes/header.php"); ?>
+<?php include 'includes/header.php' ?>
 
 <section class="LatestStory">
 
@@ -6,9 +6,42 @@
 
         <div class="content">
             <div class="card-img">
+            <?php
 
-                <img class="img-responsive" src="images/i1.jpg" alt="" />
+            $query = "SELECT * FROM posts ORDER BY post_id DESC LIMIT 1";
+            $run = mysqli_query($connection, $query);
+            while ($data = mysqli_fetch_assoc($run)) {
+           ?>
+                <img class="" src="images/<?php echo $data['post_image'] ?>" alt="" />
             </div>
+
+            <div class="description">
+                <h2 class="title">
+                    <?php echo $data['post_title']; ?>
+                </h2>
+                <p class="author">
+                    পোস্ট করেছেনঃ
+                    <?php echo $data['post_author']; ?><span class="time">
+                        <?php echo $data['post_date']; ?>
+                    </span>
+                </p>
+                <p class="short">
+                    <?php echo substr($data['post_content'],0,400); ?>
+                </p>
+                <a href="post.php?view=<?php echo $data['post_id'] ?>" class="btn btn-success b">আরও পড়ুন...</a>
+            </div>
+            <div class="search-bar">
+                <input class="hidden" type="input" placeholder="এখানে লিখুন..." />
+                <a href="" class="btn btn-primary"><i class="bi bi-search"></i> খুজুন</a>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+</section>
+<section class="more">
+    <div class="container">
+
+        <div class="grid">
             <?php
 
             $query = "SELECT * FROM posts";
@@ -16,145 +49,23 @@
 
             while ($data = mysqli_fetch_assoc($run)) {
                 ?>
-                <div class="description">
-                    <h2 class="title">
-                        <?php echo $data['post_title']; ?>
-                    </h2>
-                    <p class="author">
-                        পোস্ট করেছেনঃ
-                        <?php echo $data['post_author']; ?><span class="time">
-                            <?php echo $data['post_date']; ?>
-                        </span>
-                    </p>
-                    <p class="short">
-                        <?php echo $data['post_content']; ?>
-                    </p>
-                    <a href="post.php" class="btn btn-success b">আরও পড়ুন...</a>
+                <div class="card" style="width: 18rem;">
+                    <div class="inner">
+                        <img class="card-img-top" style="max-height:200px;width:100%" src="images/<?php echo $data['post_image'] ?>" alt="Card image cap" />
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="card-title">
+                            <?php echo $data['post_title'] ?>
+                        </h2>
+                        <p class="card-text">
+                            <?php echo substr($data['post_content'], 0, 200) ?><br>
+                            <a href="post.php?view=<?php echo $data['post_id'] ?>" class="btn btn-primary">সম্পূর্ণ
+                                পড়ুন...</a>
+                        </p>
+                    </div>
                 </div>
             <?php } ?>
-
-            <div class="search-bar">
-                <input class="hidden" type="input" placeholder="এখানে লিখুন..." />
-                <a href="" class="btn btn-primary"><i class="bi bi-search"></i> খুজুন</a>
-            </div>
-        </div>
-
-    </div>
-</section>
-<section class="more">
-    <div class="container">
-        <div class="grid">
-            <div class="card" style="width: 18rem">
-                <img class="card-img-top" src="images/i1.jpg" alt="Card image cap" />
-                <div class="card-body">
-                    <h2 class="card-title">আদায় কাঁচকলায়</h2>
-                    <p class="card-text">
-                        গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                        রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                        গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                        নিউজবাংলার গল্পের পাতা।
-                        <a href="#" class="btn btn-primary">আরও পড়ুন...</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem">
-                <img class="card-img-top" src="images/i1.jpg" alt="Card image cap" />
-                <div class="card-body">
-                    <h2 class="card-title">আদায় কাঁচকলায়</h2>
-                    <p class="card-text">
-                        গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                        রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                        গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                        নিউজবাংলার গল্পের পাতা।
-                        <a href="#" class="btn btn-primary">আরও পড়ুন...</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem">
-                <img class="card-img-top" src="images/i1.jpg" alt="Card image cap" />
-                <div class="card-body">
-                    <h2 class="card-title">আদায় কাঁচকলায়</h2>
-                    <p class="card-text">
-                        গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                        রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                        গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                        নিউজবাংলার গল্পের পাতা।
-                        <a href="#" class="btn btn-primary">আরও পড়ুন...</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem">
-                <img class="card-img-top" src="images/i1.jpg" alt="Card image cap" />
-                <div class="card-body">
-                    <h2 class="card-title">আদায় কাঁচকলায়</h2>
-                    <p class="card-text">
-                        গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                        রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                        গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                        নিউজবাংলার গল্পের পাতা।
-                        <a href="#" class="btn btn-primary">আরও পড়ুন...</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem">
-                <img class="card-img-top" src="images/i1.jpg" alt="Card image cap" />
-                <div class="card-body">
-                    <h2 class="card-title">আদায় কাঁচকলায়</h2>
-                    <p class="card-text">
-                        গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                        রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                        গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                        নিউজবাংলার গল্পের পাতা।
-                        <a href="#" class="btn btn-primary">আরও পড়ুন...</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem">
-                <img class="card-img-top" src="images/i1.jpg" alt="Card image cap" />
-                <div class="card-body">
-                    <h2 class="card-title">আদায় কাঁচকলায়</h2>
-                    <p class="card-text">
-                        গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                        রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                        গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                        নিউজবাংলার গল্পের পাতা।
-                        <a href="#" class="btn btn-primary">আরও পড়ুন...</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem">
-                <img class="card-img-top" src="images/i1.jpg" alt="Card image cap" />
-                <div class="card-body">
-                    <h2 class="card-title">আদায় কাঁচকলায়</h2>
-                    <p class="card-text">
-                        গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                        রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                        গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                        নিউজবাংলার গল্পের পাতা।
-                        <a href="#" class="btn btn-primary">আরও পড়ুন...</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem">
-                <img class="card-img-top" src="images/i1.jpg" alt="Card image cap" />
-                <div class="card-body">
-                    <h2 class="card-title">আদায় কাঁচকলায়</h2>
-                    <p class="card-text">
-                        গল্প - কার্টুন গল্প, শিক্ষনীয় গল্প, হাসির গল্প, বাংলা গল্প,
-                        রূপকথার গল্প, জীবনের গল্প, বাংলা ভালো গল্প, ভুতের কার্টুন গল্প,
-                        গল্পের শহর, বাংলা কার্টুন গল্প ইত্যাদি গল্প পড়তে ভিজিট করুন
-                        নিউজবাংলার গল্পের পাতা।
-                        <a href="#" class="btn btn-primary">আরও পড়ুন...</a>
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
 </section>

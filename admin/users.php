@@ -1,37 +1,37 @@
 <?php include 'includes/admin_header.php';
-deletePost() ?>
+delete(); ?>
 <div class="app-wrapper">
 	<div class="app-content pt-3 p-md-3 p-lg-4">
 		<div class="container-xl">
 			<div class="row g-3 mb-4 align-items-center justify-content-between">
 				<div class="col-auto">
-					<h1 class="app-page-title mb-0">Published Posts</h1>
+					<h1 class="app-page-title mb-0">Registered Users</h1>
 				</div>
 				<?php include 'includes/option.php' ?>
 
 				<div class="row g-4">
 
 				<?php
-					$query="SELECT * FROM posts WHERE post_status='published'";
+					$query="SELECT * FROM users WHERE status='active'";
 					$run=mysqli_query($connection,$query);
 					confirmation($run);
 
 					while($data=mysqli_fetch_assoc($run)){
-						$post_id=$data['post_id'];
+						$user_id=$data['user_id'];
 						?>
 					
 
 					<div class="col-6 col-md-4 col-xl-3 col-xxl-2">
 						<div class="app-card app-card-doc shadow-sm h-100">
 							<div style="overflow: hidden;" class="app-card-thumb-holder p-3">
-								<img style="max-width:30vh" src="../images/<?php echo $data['post_image'] ?>" alt="">
-								<span class="badge bg-success">NEW</span>
+								<img style="max-width:30vh" src="../images/<?php echo $data['user_image'] ?>" alt="img">
+								<span class="badge bg-success"><?php echo $data['user_type'] ?></span>
 								<a class="app-card-link-mask" href="#file-link"></a>
 							</div>
 							<div class="app-card-body p-3 has-card-actions">
-								<h4 class="app-doc-title truncate mb-0"><a href="#file-link"><?php echo $data['post_title'] ?></a></h4>
+								<h4 class="app-doc-title truncate mb-0"><a href="#file-link"><?php echo $data['first_name']." ".$data['last_name'] ?></a></h4>
 								<div class="app-doc-meta">
-									<p><?php echo substr($data['post_content'],0,300) ?></p>
+									<p>Email: <?php echo $data['user_email'] ?></p>
 								</div><!--//app-doc-meta-->
 								<div class="app-card-actions">
 									<div class="dropdown">
@@ -45,7 +45,7 @@ deletePost() ?>
 											</svg>
 										</div><!--//dropdown-toggle-->
 										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="../post.php?view=<?php echo $post_id ?>"><svg width="1em" height="1em"
+											<li><a class="dropdown-item" href="../post.php?view=<?php echo $user_id ?>"><svg width="1em" height="1em"
 														viewBox="0 0 16 16" class="bi bi-eye me-2" fill="currentColor"
 														xmlns="http://www.w3.org/2000/svg">
 														<path fill-rule="evenodd"
@@ -61,7 +61,7 @@ deletePost() ?>
 													</svg>Edit</a></li>
 											<hr class="dropdown-divider">
 											</li>
-											<li><a class="dropdown-item" href="posts.php?delete=<?php echo $post_id ?>"><svg width="1em" height="1em"
+											<li><a class="dropdown-item" href="users.php?delete=<?php echo $user_id ?>"><svg width="1em" height="1em"
 														viewBox="0 0 16 16" class="bi bi-trash me-2" fill="currentColor"
 														xmlns="http://www.w3.org/2000/svg">
 														<path

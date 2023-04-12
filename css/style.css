@@ -6,8 +6,6 @@
       padding: 0;
       font-family: 'Tiro Bangla', serif;
       box-sizing: border-box;
-      
-
   }
 
   h2 {
@@ -37,7 +35,8 @@ body{
   }
 
   .content {
-      display: inline-flex;
+      display: flex;
+      justify-content: space-between;
       padding: 20px;
       background-color: rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(25px);
@@ -54,15 +53,15 @@ body{
 
   .card-img img {
       width: 100%;
+      margin: 0 auto;
       height: 30vh;
+      display: block;
       max-width: 40vh;
       border-radius: 10px;
   }
 
-  .description {
-      overflow: hidden;
-  }
 
+ 
   .short {
       text-align: justify;
       word-wrap: wrap;
@@ -102,7 +101,6 @@ body{
       border-radius: 50px;
       border: none;
       font-size: 16px;
-      text-transform: capitalize;
       position: relative;
       color: #333;
       height: 40px;
@@ -137,4 +135,9 @@ body{
     text-align: center;
     margin: 30px;
     font-weight: 900;
+  }
+
+  .reg , .reg a {
+    text-decoration: none;
+    margin-top: 20px;
   }
