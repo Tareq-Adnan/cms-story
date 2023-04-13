@@ -18,7 +18,9 @@ ob_start();
     <link rel="stylesheet" href="css/post_style.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script src="js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="css/ad_style.css?v=<?php echo time(); ?>">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -33,13 +35,14 @@ ob_start();
             <div class="collapse navbar-collapse" id="navIcon">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="index.php" class="nav-link">হোম</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">গল্পগুচ্ছ</a></li>
+                    <li class="nav-item"><a href="choto.php?cat_id=1&name=ছোট গল্প" class="nav-link">ছোট গল্প</a></li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">বৈজ্ঞানিক কল্পকাহিনি</a>
+                        <a href="choto.php?cat_id=2&name=বৈজ্ঞানিক কল্পকাহিনি" class="nav-link">বৈজ্ঞানিক কল্পকাহিনি</a>
                     </li>
                     <li class="nav-item"><a href="contact.php" class="nav-link">যোগাযোগ</a></li>
                     <?php
-                    if ($_SESSION['username']==='admin') { ?>
+
+                    if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'admin') { ?>
 
                         <li class="nav-item">
                             <a href="admin/" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -72,10 +75,10 @@ ob_start();
 
                     <?php } else if (basename($_SERVER['PHP_SELF']) == 'login.php') {
 
-                    } else if ($_SESSION['user_type'] === 'user') { ?>
+                    } else if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'user') { ?>
 
                                 <li class="nav-item">
-                                    <a href="admin/" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    <a href="profile.php" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             style="margin-top:-4px;margin-right:-4px" fill="currentColor" class="bi bi-person-gear"
                                             viewBox="0 0 16 16">
                                             <path

@@ -1,5 +1,6 @@
 <?php include 'includes/admin_header.php';
 publish();
+notify();
 ?>
 <div class="app-wrapper">
 	<div class="app-content pt-3 p-md-3 p-lg-4">
@@ -54,7 +55,7 @@ publish();
 														<path fill-rule="evenodd"
 															d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
 													</svg>View</a></li>
-											<li><a class="dropdown-item" href="pending.php?publish=<?php echo $post_id ?>"><svg width="1em" height="1em"
+											<li><a class="dropdown-item" href="pending.php?publish=<?php echo $post_id ?>&p"><svg width="1em" height="1em"
 														viewBox="0 0 16 16" class="bi bi-eye me-2" fill="currentColor"
 														xmlns="http://www.w3.org/2000/svg">
 														<path fill-rule="evenodd"

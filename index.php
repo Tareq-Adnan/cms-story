@@ -51,7 +51,7 @@
                 ?>
                 <div class="card" style="width: 18rem;">
                     <div class="inner">
-                        <img class="card-img-top" style="max-height:200px;width:100%" src="images/<?php echo $data['post_image'] ?>" alt="Card image cap" />
+                        <img class="card-img-top img-fluid" style="height:200px;width:100%" src="images/<?php echo $data['post_image'] ?>" alt="Card image cap" />
                     </div>
 
                     <div class="card-body">
@@ -60,7 +60,7 @@
                         </h2>
                         <p class="card-text">
                             <?php echo substr($data['post_content'], 0, 200) ?><br>
-                            <a href="post.php?view=<?php echo $data['post_id'] ?>" class="btn btn-primary">সম্পূর্ণ
+                            <a style="position:relative;botton:2px;" href="post.php?view=<?php echo $data['post_id'] ?>" class="btn btn-primary">সম্পূর্ণ
                                 পড়ুন...</a>
                         </p>
                     </div>

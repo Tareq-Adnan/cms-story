@@ -29,9 +29,9 @@
                 <p class="post_author">
                     পোস্ট করেছেনঃ <?php echo $post_author ?><span class="time"> <?php echo $post_date ?></span>
                 </p>
-                <p class="main-text">
+                <pre class="view">
                     <?php echo $post_content ?>
-                </p>
+                </pre>
 
             </div>
             <div class="post_card-img">
