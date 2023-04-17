@@ -3,23 +3,16 @@ deletePost();
 notify(); ?>
 <!doctype html>
 <html>
-<?php
+<?Php
+$id=$_GET['user'];
+  $query = "SELECT * FROM posts WHERE post_user_id=$id AND post_status='published'";
+  $run = mysqli_query($connection, $query);
 
-$query = "SELECT * FROM posts WHERE post_user_id='{$_SESSION['user_id']}' AND post_status='published'";
-$run = mysqli_query($connection, $query);
-$query2 = "SELECT * FROM posts WHERE post_user_id='{$_SESSION['user_id']}'";
-$run2 = mysqli_query($connection, $query2);
-confirmation($run);
-$num = mysqli_num_rows($run);
-$num2 = mysqli_num_rows($run2);
-
-while ($data = mysqli_fetch_assoc($run)) {
-  $post_id = $data['post_id'];
-  $title = $data['post_title'];
-  $author = $data['post_author'];
-  $content = $data['post_content'];
-  $postimage = $data['post_image'];
-}
+  $query2 = "SELECT * FROM posts WHERE post_user_id=$id";
+  $run2 = mysqli_query($connection, $query2);
+  confirmation($run);
+  $num = mysqli_num_rows($run);
+  $num2 = mysqli_num_rows($run2);
 
 
 ?>
@@ -82,22 +75,25 @@ while ($data = mysqli_fetch_assoc($run)) {
           <div class="media align-items-end profile-head">
             <?php
 
-            $query = "SELECT * FROM users WHERE user_id='{$_SESSION['user_id']}'";
-            $run = mysqli_query($connection, $query);
-            confirmation($run);
-            while ($data = mysqli_fetch_assoc($run)) {
-              $username = $data['username'];
-              $firstName = $data['first_name'];
-              $lastName = $data['last_name'];
-              $image = $data['user_image'];
-              $email = $data['user_email'];
-              $userType = $data['user_type'];
+
+            $id = $_GET['user'];
+            $query = "SELECT * FROM users WHERE user_id=$id";
+            $run3 = mysqli_query($connection, $query);
+            confirmation($run3);
+
+            while ($data2 = mysqli_fetch_assoc($run3)) {
+              $username = $data2['username'];
+              $firstName = $data2['first_name'];
+              $lastName = $data2['last_name'];
+              $image = $data2['user_image'];
+              $email = $data2['user_email'];
+              $userType = $data2['user_type'];
             }
 
             ?>
             <div class="profile mr-3">
               <img src="images/<?php echo $image ?>" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a
-                href="profile.php?editProfile=<?php echo $_SESSION['user_id'] ?>"
+                href="edit_profile.php?editProfile=<?php echo $_SESSION['user_id'] ?>"
                 class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
             </div>
             <div class="media-body mb-5 text-white">
@@ -149,9 +145,14 @@ while ($data = mysqli_fetch_assoc($run)) {
               </thead>
               <tbody>
                 <?php
-                if (empty($author)) {
 
-                } else { ?>
+                while ($data = mysqli_fetch_assoc($run)) {
+                  $post_id = $data['post_id'];
+                  $title = $data['post_title'];
+                  $author = $data['post_author'];
+                  $content = $data['post_content'];
+                  $postimage = $data['post_image']; ?>
+
                   <tr class="my-auto">
                     <td>
                       <?php echo $title ?>
@@ -167,6 +168,7 @@ while ($data = mysqli_fetch_assoc($run)) {
                         class="btn btn-primary" href="profile.php?delete=<?php echo $post_id ?>&successDelete">Delete</a>
                     </td>
                   <?php } ?>
+
 
                 </tr>
               </tbody>
@@ -185,7 +187,7 @@ while ($data = mysqli_fetch_assoc($run)) {
             e.preventDefault();
           });</script>
 
-       
+        <?php include "includes/footer.php" ?>
 
 </body>
 

@@ -1,9 +1,21 @@
 
+<?php
+ $pageName = basename($_SERVER['PHP_SELF']);
+
+ if($pageName=='index.php'){
+	$val="active";
+ }else if($pageName=='posts.php'){
+	$val="";
+	$val2="active";
+ }
+
+?>
+
 <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 					<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 						<li class="nav-item">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-							<a class="nav-link active" href="index.php">
+							<a class="nav-link <?php echo $val?> " href="index.php">
 								<span class="nav-icon">
 									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door"
 										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +30,7 @@
 						</li><!--//nav-item-->
 						<li class="nav-item">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-							<a class="nav-link" href="posts.php">
+							<a class="nav-link <?php echo $val2?>" href="posts.php">
 								<span class="nav-icon">
 									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder"
 										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -28,12 +40,12 @@
 											d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z" />
 									</svg>
 								</span>
-								<span class="nav-link-text">Posts</span>
+								<span class="nav-link-text ">Posts</span>
 							</a><!--//nav-link-->
 						</li><!--//nav-item-->
 						<li class="nav-item">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-							<a class="nav-link" href="pending.php">
+							<a class="nav-link <?php echo $val3?>" href="pending.php">
 								<span class="nav-icon">
 									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list"
 										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +75,7 @@
 											d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z" />
 									</svg>
 								</span>
-								<span class="nav-link-text">Users</span>
+								<span class="nav-link-text <?php echo $val?>">Users</span>
 								<span class="submenu-arrow">
 									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
 										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -77,11 +89,11 @@
 							
 							<div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
 								<ul class="submenu-list list-unstyled">
-									<li class="submenu-item"><a class="submenu-link"
+									<li class="submenu-item <?php echo $val?>"><a class="submenu-link"
 											href="users.php">Registered Users</a></li>
-									<li class="submenu-item"><a class="submenu-link" href="pending-user.php">Pending</a>
+									<li class="submenu-item <?php echo $val?>"><a class="submenu-link" href="pending-user.php">Pending</a>
 									</li>
-									<li class="submenu-item"><a class="submenu-link" href="rejected.php">Rejected</a>
+									<li class="submenu-item <?php echo $val?>"><a class="submenu-link" href="rejected.php">Rejected</a>
 									</li>
 								</ul>
 							</div>

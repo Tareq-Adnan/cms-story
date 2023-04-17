@@ -1,30 +1,34 @@
+<?php  ?>
+
 <div class="col-auto">
 	<div class="page-utilities">
 		<div class="row g-2 justify-content-start justify-content-md-end align-items-center">
 			<div class="col-auto">
-				<form class="docs-search-form row gx-1 align-items-center">
+				<!-- <form class="docs-search-form row gx-1 align-items-center" method="post">
+					<input type="hidden" value="">
 					<div class="col-auto">
-						<input type="text" id="search-docs" name="searchdocs" class="form-control search-docs"
-							placeholder="Search">
+						<button type="submit" name="filterPost" class="btn app-btn-secondary">Filter</button>
 					</div>
-					<div class="col-auto">
-						<button type="submit" class="btn app-btn-secondary">Search</button>
-					</div>
-				</form>
+				</form> -->
 
 			</div><!--//col-->
-			<div class="col-auto">
+			<!-- <div class="col-auto">
 
+			<?php
+				$query="SELECT * FROM users WHERE user_type='user'";
+				$run=mysqli_query($connection,$query);
+				confirmation($run);
+
+
+			?>
 				<select class="form-select w-auto">
-					<option selected="" value="option-1">All</option>
-					<option value="option-2">Text file</option>
-					<option value="option-3">Image</option>
-					<option value="option-4">Spreadsheet</option>
-					<option value="option-5">Presentation</option>
-					<option value="option-6">Zip file</option>
+					<?php while($data=mysqli_fetch_assoc($run)){?>
 
+						<option selected="" value="<?php echo $data['user_id'] ?>"><?php echo $data['first_name']; ?></option>
+					<?php } ?>
+				
 				</select>
-			</div>
+			</div> -->
 			<div class="col-auto">
 				<a class="btn app-btn-primary" href="../add-post.php">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

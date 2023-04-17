@@ -1,4 +1,6 @@
-<?php include("includes/header.php"); ?>
+<?php include("includes/header.php");
+comment();
+?>
 
 <section class="post_LatestStory">
 
@@ -41,4 +43,6 @@
 
     </div>
 </section>
+
+<?php include 'comment.php' ?>
 <?php include "includes/footer.php" ?>

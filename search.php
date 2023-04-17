@@ -1,47 +1,29 @@
-<?php include 'includes/header.php' ?>
+<?php include 'includes/header.php';
+ if (isset($_POST['search'])) {
+    $key = trim($_POST['value']);
+}else{
+    $key="";
+}
+?>
 
-<section class="LatestStory">
+<section>
 
     <div class="container">
 
         <div class="content">
-            <div class="card-img">
-                <?php
 
-                $query = "SELECT * FROM posts ORDER BY post_id DESC LIMIT 1";
-                $run = mysqli_query($connection, $query);
-                while ($data = mysqli_fetch_assoc($run)) {
-                    ?>
-                    <img class="" src="images/<?php echo $data['post_image'] ?>" alt="" />
-                </div>
-
-                <div class="description">
-                    <h2 class="title">
-                        <?php echo $data['post_title']; ?>
-                    </h2>
-                    <p class="author">
-                        পোস্ট করেছেনঃ
-                        <?php echo $data['post_author']; ?><span class="time">
-                            <?php echo $data['post_date']; ?>
-                        </span>
-                    </p>
-                    <p class="short">
-                        <?php echo substr($data['post_content'], 0, 400); ?>
-                    </p>
-                    <a href="post.php?view=<?php echo $data['post_id'] ?>" class="btn btn-success b">আরও পড়ুন...</a>
-                </div>
-                <div class="search-bar">
-                    <form action="search.php" method="post">
+            <div class="search-bar">
+                <form action="" method="post">
                     <input class="hidden" name="value" type="text" placeholder="এখানে লিখুন..." />
-                    <button type="submit" name='search' class="btn btn-primary a"><i class="bi bi-search"></i> খুজুন</button>
-                    </form>
-                   
-                </div>
+                    <button type="submit" name='search' class="btn btn-primary a"><i class="bi bi-search"></i>
+                        খুজুন</button>
+                </form>
             </div>
-        <?php } ?>
-    </div>
+
+        </div>
 </section>
-<section class="more">
+
+<section class="mt-5">
     <div class="container">
 
         <div class="grid">
@@ -49,13 +31,15 @@
 
             $page_1 = pagination();
 
-            $query = "SELECT * FROM posts";
+           
+
+            $query = "SELECT * FROM posts WHERE post_tags LIKE '%$key%' OR post_title LIKE '%$key%'";
             $execute = mysqli_query($connection, $query);
             $num = mysqli_num_rows($execute);
             $num = ceil($num / 8);
 
 
-            $query = "SELECT * FROM posts LIMIT $page_1,8";
+            $query = "SELECT * FROM posts WHERE post_tags LIKE '%$key%' OR post_title LIKE '%$key%' LIMIT $page_1,8";
 
             $execute = mysqli_query($connection, $query);
 
@@ -88,7 +72,7 @@
             <?php
             for ($i = 1; $i <= $num; $i++) {
                 ?>
-                <li class="page-item active"><a class="page-link" href="index.php?page=<?php echo $i ?>"><?php echo $i ?></a>
+                <li class="page-item active"><a class="page-link" href="search.php?page=<?php echo $i ?>"><?php echo $i ?></a>
                 </li>
 
             <?php } ?>

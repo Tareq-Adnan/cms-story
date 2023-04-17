@@ -1,40 +1,82 @@
 <?php
 
-function notify(){
+function filterPost(){
+    if(isset($_POST['filterPost'])){
+        $id=$_POST['user_id'];
+    }
+}
+
+
+function pagination()
+{
+    global $connection;
+
+    if (isset($_GET['page'])) {
+        $page = $_GET['page'];
+    } else {
+        $page = "";
+    }
+
+    if ($page == "" || $page == 1) {
+        return $page_1 = 0;
+    } else {
+        return $page_1 = ($page * 6) - 6;
+    }
+}
+
+function comment()
+{
+    global $connection;
+    if (isset($_POST['comment_submit'])) {
+
+
+        $comment = $_POST['comment'];
+        $post_id = $_GET['view'];
+        $comment_author = $_SESSION['first_name'] . " " . $_SESSION['last_name'];
+        $comment_user_id = $_SESSION['user_id'];
+
+        $query = "INSERT INTO comments(comment_post_id,comment_user_id,comment_user_name,comment) Values ($post_id,'$comment_user_id','$comment_author','$comment')";
+        $run = mysqli_query($connection, $query);
+        confirmation($run);
+    }
+}
+
+function notify()
+{
 
     if (isset($_GET['successUpdate']) || isset($_GET['successDelete']) || isset($_POST['addPost'])) { ?>
-      <script>
-        swal({
-          title: "পরিবর্তন সংরক্ষিত",
-          text: "আপনার পরিবর্তন সংরক্ষণ করা হয়েছে?",
-          icon: "success",
-          button: "ঠিক আছে",
-        });
-      </script>
+        <script>
+            swal({
+                title: "পরিবর্তন সংরক্ষিত",
+                text: "আপনার পরিবর্তন সংরক্ষণ করা হয়েছে?",
+                icon: "success",
+                button: "ঠিক আছে",
+            });
+        </script>
     <?php }
 
-    if(isset($_POST['addPost'])){
+    if (isset($_POST['addPost'])) {
         ?>
         <script>
-          swal({
-            title: "গল্পটি সংরক্ষিত হয়েছে",
-            text: "আপনার গল্পটি অনুমোদন এর অপেক্ষায়!",
-            icon: "success",
-            button: "ঠিক আছে",
-          });
+            swal({
+                title: "গল্পটি সংরক্ষিত হয়েছে",
+                text: "আপনার গল্পটি অনুমোদন এর অপেক্ষায়!",
+                icon: "success",
+                button: "ঠিক আছে",
+            });
         </script>
-      <?php }
-      if(isset($_GET['p'])){
+    <?php }
+    if (isset($_GET['p'])) {
         ?>
         <script>
-          swal({
-            title: "অনুমোদন হয়েছে",
-            text: "গল্পটি প্রকাশের অনুমোদন দেওয়া হয়েছে!",
-            icon: "success",
-            button: "ঠিক আছে",
-          });
+            swal({
+                title: "অনুমোদন হয়েছে",
+                text: "গল্পটি প্রকাশের অনুমোদন দেওয়া হয়েছে!",
+                icon: "success",
+                button: "ঠিক আছে",
+            });
         </script>
-      <?php }
+    <?php }
 
 }
 function login()
@@ -132,8 +174,47 @@ function EditPost($post_id)
 
 
     }
-    
+
 }
+function updateProfile($user_id)
+{
+    global $connection;
+    if (isset($_POST['updateProfile'])) {
+
+
+        $username = $_POST['username'];
+        $firstName = $_POST['first_name'];
+        $lastName = $_POST['last_name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $image = $_FILES['image']['name'];
+        $image_temp = $_FILES['image']['tmp_name'];
+
+        move_uploaded_file($image_temp, "./images/$image");
+
+
+        if (empty($image)) {
+
+            $query = "SELECT * FROM users WHERE user_id=$user_id";
+            $e = mysqli_query($connection, $query);
+
+            while ($data = mysqli_fetch_assoc($e)) {
+                $image = $data['user_image'];
+            }
+        }
+
+        $query = "UPDATE users SET first_name='$firstName',last_name='$lastName',user_image='$image',user_email='$email',password='$password' WHERE user_id=$user_id";
+        $run = mysqli_query($connection, $query);
+        confirmation($run);
+
+        header("Location: profile.php?successUpdate");
+
+
+    }
+
+}
+
 function addPost()
 {
     global $connection;

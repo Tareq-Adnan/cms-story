@@ -13,7 +13,14 @@ accept(); ?>
 				<div class="row g-4">
 
 					<?php
+					$page_1 = pagination();
+
 					$query = "SELECT * FROM users WHERE status='pending'";
+					$execute = mysqli_query($connection, $query);
+					$num = mysqli_num_rows($execute);
+					$num = ceil($num / 8);
+
+					$query = "SELECT * FROM users WHERE status='pending' LIMIT $page_1,8";
 					$run = mysqli_query($connection, $query);
 					confirmation($run);
 
@@ -107,15 +114,13 @@ accept(); ?>
 
 		<nav class="app-pagination mt-5">
 			<ul class="pagination justify-content-center">
-				<li class="page-item disabled">
-					<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-				</li>
-				<li class="page-item active"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item">
-					<a class="page-link" href="#">Next</a>
-				</li>
+			<?php
+				for ($i = 1; $i <= $num; $i++) {
+					?>
+					<li class="page-item active"><a class="page-link" href="pending-user.php?page=<?php echo $i ?>"><?php echo $i ?></a>
+					</li>
+
+				<?php } ?>
 			</ul>
 		</nav><!--//app-pagination-->
 	</div><!--//container-fluid-->
