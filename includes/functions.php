@@ -60,8 +60,10 @@ function notify()
                 icon: "success",
                 button: "ঠিক আছে",
             });
+            
         </script>
-    <?php }
+        
+    <?php  }
 
     if (isset($_POST['addPost'])) {
         ?>
@@ -85,13 +87,12 @@ function notify()
             });
         </script>
     <?php }
-
 }
 function login()
 {
     global $connection;
     if (isset($_POST['login'])) {
-        $username = $_POST['username'];
+        $username = trim($_POST['username']);
         $password = $_POST['password'];
 
 
@@ -118,7 +119,7 @@ function login()
 
             }
 
-            if ($username === $uname && $password === $pass) {
+            if ($username === $uname && password_verify($password,$pass) ) {
                 $_SESSION['user_id'] = $id;
                 $_SESSION['username'] = $uname;
                 $_SESSION['password'] = $pass;
@@ -195,7 +196,16 @@ function updateProfile($user_id)
         $firstName = $_POST['first_name'];
         $lastName = $_POST['last_name'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password =$_POST['password'];
+
+        if(empty($password)){
+            $query = "SELECT * FROM users WHERE user_id=$user_id";
+            $e = mysqli_query($connection, $query);
+
+            while ($data = mysqli_fetch_assoc($e)) {
+                $password=$data['password'];
+            }
+        }
 
         $image = $_FILES['image']['name'];
         $image_temp = $_FILES['image']['tmp_name'];
@@ -210,6 +220,7 @@ function updateProfile($user_id)
 
             while ($data = mysqli_fetch_assoc($e)) {
                 $image = $data['user_image'];
+                $password=$data['password'];
             }
         }
 
@@ -218,10 +229,7 @@ function updateProfile($user_id)
         confirmation($run);
 
         header("Location: profile.php?successUpdate");
-
-
     }
-
 }
 
 function addPost()
@@ -314,11 +322,11 @@ function registration()
 {
     global $connection;
     if (isset($_POST['registration'])) {
-        $username = $_POST['username'];
+        $username = trim($_POST['username']);
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
 
         $image = $_FILES['image']['name'];
         $image_temp = $_FILES['image']['tmp_name'];

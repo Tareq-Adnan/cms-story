@@ -66,7 +66,7 @@ updateProfile($user_id);
 
                 <div class="field">
                     <input type="password" placeholder="পাসওয়ার্ড..." name="password" class=""
-                        value="<?php echo $password ?>">
+                        value="">
                 </div>
 
                 <div class="field">
