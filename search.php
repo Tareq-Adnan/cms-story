@@ -30,7 +30,7 @@
             <?php
             // viewing limited posts at search page using pagination and fetching data from databse based on keyword.
             $page_1 = pagination();
-            $matchedPostData = "SELECT * FROM posts WHERE post_status='published' AND WHERE post_tags LIKE '%$key%' OR post_title LIKE '%$key%'";
+            $matchedPostData = "SELECT * FROM posts WHERE post_status='published' AND post_tags LIKE '%$key%' OR post_title LIKE '%$key%'";
             $executeQuery = mysqli_query($connection, $matchedPostData);
             $rowCount = mysqli_num_rows($executeQuery);
             $rowCount = ceil($rowCount / 8);

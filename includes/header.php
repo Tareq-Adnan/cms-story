@@ -13,10 +13,7 @@ ob_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
     <title>Story</title>
-    <script type="text/javascript">
 
-        window.history.forward();
-    </script>
     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/post_style.css?v=<?php echo time(); ?>">

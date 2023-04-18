@@ -3,7 +3,7 @@
 <div class="container">
 
     <?php
-    if ($_SESSION['username'] == NULL) { } else { ?>
+    if (isset($_SESSION['username']) == NULL) { } else { ?>
 
         <div class="comment_box">
             <form action="" method="post">
