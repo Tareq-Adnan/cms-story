@@ -1,5 +1,5 @@
 <?php include 'includes/admin_header.php';
-deletePost();
+deletePost();//method for catch delete post request.
 ?>
 <div class="app-wrapper">
 	<div class="app-content pt-3 p-md-3 p-lg-4">
@@ -14,7 +14,7 @@ deletePost();
 
 					<?php
 
-
+					// viewing limited posts at admin portal all posts page using pagination
 					$page_1 = pagination();
 
 					$query = "SELECT * FROM posts WHERE post_status='published'";
@@ -29,8 +29,6 @@ deletePost();
 					while ($data = mysqli_fetch_assoc($run)) {
 						$post_id = $data['post_id'];
 						?>
-
-
 						<div class="col-6 col-md-4 col-xl-3 col-xxl-2">
 							<div class="app-card app-card-doc shadow-sm h-100">
 								<div style="overflow: hidden;" class="app-card-thumb-holder p-3">
@@ -39,7 +37,8 @@ deletePost();
 									<a class="app-card-link-mask" href="../post.php?view=<?php echo $post_id ?>"></a>
 								</div>
 								<div class="app-card-body p-3 has-card-actions">
-									<h4 class="app-doc-title truncate mb-0"><a href="../post.php?view=<?php echo $post_id ?>">
+									<h4 class="app-doc-title truncate mb-0"><a
+											href="../post.php?view=<?php echo $post_id ?>">
 											<?php echo $data['post_title'] ?>
 										</a></h4>
 									<div class="app-doc-meta">
@@ -93,10 +92,6 @@ deletePost();
 							</div><!--//app-card-->
 						</div><!--//col-->
 					<?php } ?>
-
-
-
-
 				</div><!--//app-card-->
 			</div><!--//col-->
 		</div><!--//row-->

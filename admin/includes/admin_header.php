@@ -2,7 +2,6 @@
 include '../includes/db.php';
 session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,8 +63,6 @@ session_start();
 									<li><a class="dropdown-item" href="../profile.php?user=<?php echo $_SESSION['user_id']; ?>">
 											<?php echo $_SESSION['username']; ?>
 										</a></li>
-
-
 									<li>
 										<hr class="dropdown-divider">
 									</li>

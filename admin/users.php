@@ -1,5 +1,7 @@
 <?php include 'includes/admin_header.php';
-delete(); ?>
+delete();//method for catch delete user request ?>
+
+
 <div class="app-wrapper">
 	<div class="app-content pt-3 p-md-3 p-lg-4">
 		<div class="container-xl">
@@ -10,26 +12,20 @@ delete(); ?>
 				<?php include 'includes/option.php' ?>
 
 				<div class="row g-4">
-
+				<!-- viewing limited users at admin registered user page using pagination -->
 					<?php
-
-
 					$page_1 = pagination();
-
 					$query = "SELECT * FROM users WHERE status='active'";
 					$execute = mysqli_query($connection, $query);
 					$num = mysqli_num_rows($execute);
 					$num = ceil($num / 8);
-
 
 					$query = "SELECT * FROM users WHERE status='active' LIMIT $page_1,8";
 					$run = mysqli_query($connection, $query);
 					confirmation($run);
 
 					while ($data = mysqli_fetch_assoc($run)) {
-						$user_id = $data['user_id'];
-						?>
-
+						$user_id = $data['user_id'];?>
 
 						<div class="col-6 col-md-4 col-xl-3 col-xxl-2">
 							<div class="app-card app-card-doc shadow-sm h-100">
@@ -40,6 +36,7 @@ delete(); ?>
 									</span>
 									<a class="app-card-link-mask" href="../profile.php?user=<?php echo $user_id ?>"></a>
 								</div>
+
 								<div class="app-card-body p-3 has-card-actions">
 									<h4 class="app-doc-title truncate mb-0"><a href="../profile.php?user=<?php echo $user_id ?>">
 											<?php echo $data['first_name'] . " " . $data['last_name'] ?>
@@ -49,6 +46,7 @@ delete(); ?>
 											<?php echo $data['user_email'] ?>
 										</p>
 									</div><!--//app-doc-meta-->
+
 									<div class="app-card-actions">
 										<div class="dropdown">
 											<div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
@@ -60,6 +58,7 @@ delete(); ?>
 														d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
 												</svg>
 											</div><!--//dropdown-toggle-->
+
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item"
 														href="../profile.php?user=<?php echo $user_id ?>"><svg width="1em"
@@ -94,14 +93,9 @@ delete(); ?>
 							</div><!--//app-card-->
 						</div><!--//col-->
 					<?php } ?>
-
-
-
-
 				</div><!--//app-card-->
 			</div><!--//col-->
 		</div><!--//row-->
-
 
 		<nav class="app-pagination mt-5">
 			<ul class="pagination justify-content-center">

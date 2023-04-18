@@ -1,13 +1,8 @@
 <?php include("includes/header.php"); 
-
-registration();?>
-
+registration();//method which catch registration form data.
+?>
 <section class="post_LatestStory">
-
     <div class="container login-form">
-
-
-
         <form action="" method="post" enctype="multipart/form-data">
             <div class="login_title">
                 <h2>সাইন আপ</h2>
@@ -49,20 +44,14 @@ registration();?>
                 </div>
 
             </div>
-
-
-
-
         </form>
     </div>
-
-
     </div>
 </section>
 
 
 <?php include "includes/footer.php" ?>
-
+<!-- function for custom image choose -->
 <script type="text/javascript">
     const picbtn = document.getElementById('pic');
     const label = document.getElementById('pic-label');
@@ -71,7 +60,5 @@ registration();?>
         if (picbtn.value) {
             label.innerHTML = picbtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
         }
-    })
-
-
+    });
 </script>

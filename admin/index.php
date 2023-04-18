@@ -3,9 +3,7 @@
 
 	<div class="app-content pt-3 p-md-3 p-lg-4">
 		<div class="container-xl">
-
 			<h1 class="app-page-title">Overview</h1>
-
 			<div class="app-card alert alert-dismissible shadow-sm mb-4 border-left-decoration" role="alert">
 				<div class="inner">
 					<div class="app-card-body p-3 p-lg-4">
@@ -16,7 +14,6 @@
 						<p>To the admin panel</p>
 						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 					</div><!--//app-card-body-->
-
 				</div><!--//inner-->
 			</div><!--//app-card-->
 
@@ -25,12 +22,12 @@
 					<div class="app-card app-card-stat shadow-sm h-100">
 						<div class="app-card-body p-3 p-lg-4">
 							<?php
-
+							
+							//Showing total registered users Number
 							$query = "SELECT * FROM users";
 							$run = mysqli_query($connection, $query);
 							confirmation($run);
 							$num = mysqli_num_rows($run);
-
 
 							?>
 							<h4 class="stats-type mb-1">Total users</h4>
@@ -51,11 +48,11 @@
 							<h4 class="stats-type mb-1">TOTAL STORY</h4>
 							<?php
 
+							//Showing total post Number
 							$query = "SELECT * FROM posts";
 							$run = mysqli_query($connection, $query);
 							confirmation($run);
 							$num = mysqli_num_rows($run);
-
 
 							?>
 							<div class="stats-figure">
@@ -71,6 +68,7 @@
 						<div class="app-card-body p-3 p-lg-4">
 							<h4 class="stats-type mb-1">Pending Users</h4>
 							<?php
+								//Showing total pending users Number
 							$query = "SELECT * FROM users WHERE status='pending'";
 							$run = mysqli_query($connection, $query);
 							confirmation($run);
@@ -89,6 +87,7 @@
 					<div class="app-card app-card-stat shadow-sm h-100">
 						<div class="app-card-body p-3 p-lg-4">
 							<?php
+							//Showing total pending posts Number
 							$query = "SELECT * FROM posts WHERE post_status='pending'";
 							$run = mysqli_query($connection, $query);
 							confirmation($run);
@@ -106,7 +105,6 @@
 					</div><!--//app-card-->
 				</div><!--//col-->
 			</div><!--//row-->
-
 		</div><!--//app-card-->
 	</div><!--//col-->
 </div><!--//row-->

@@ -1,7 +1,6 @@
-
 <?php
  $pageName = basename($_SERVER['PHP_SELF']);
-
+//matching page for showing active tab 
  if($pageName=='index.php'){
 	$val="active";
  }else if($pageName=='posts.php'){
@@ -40,6 +39,7 @@
 								<span class="nav-link-text">Overview</span>
 							</a><!--//nav-link-->
 						</li><!--//nav-item-->
+
 						<li class="nav-item">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 							<a class="nav-link <?php echo $val2?>" href="posts.php">
@@ -55,6 +55,7 @@
 								<span class="nav-link-text ">Posts</span>
 							</a><!--//nav-link-->
 						</li><!--//nav-item-->
+
 						<li class="nav-item">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 							<a class="nav-link <?php echo $val3?>" href="pending.php">
@@ -73,6 +74,7 @@
 								<span class="nav-link-text">Pending Posts</span>
 							</a><!--//nav-link-->
 						</li><!--//nav-item-->
+
 						<li class="nav-item has-submenu">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 							<a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
@@ -97,8 +99,6 @@
 								</span><!--//submenu-arrow-->
 							</a><!--//nav-link-->
 
-
-							
 							<div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
 								<ul class="submenu-list list-unstyled">
 									<li class="submenu-item <?php echo $val5?>"><a class="submenu-link"

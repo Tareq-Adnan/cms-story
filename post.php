@@ -1,17 +1,14 @@
 <?php include("includes/header.php");
-comment();
+comment();//method which get the post comment request.
 ?>
-
 <section class="post_LatestStory">
-
     <div class="container">
-
         <div class="post_content">
-
                 <?php
                     if(isset($_GET['view'])){
                         $post_id=$_GET['view'];
 
+                        // fetching specific posts data from databae upon user request
                         $query="SELECT * FROM posts WHERE post_id='{$post_id}'";
                         $run=mysqli_query($connection,$query);
                         confirmation($run);
@@ -31,6 +28,7 @@ comment();
                 <p class="post_author">
                     পোস্ট করেছেনঃ <?php echo $post_author ?><span class="time"> <?php echo $post_date ?></span>
                 </p>
+
                 <pre class="view">
                     <?php echo $post_content ?>
                 </pre>
@@ -40,7 +38,6 @@ comment();
                 <img class="img-responsive" src="images/<?php echo $post_image ?>" alt="img" />
             </div>
         </div>
-
     </div>
 </section>
 

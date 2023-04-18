@@ -1,13 +1,11 @@
+<!-- Comment Page -->
+
 <div class="container">
 
     <?php
-    if ($_SESSION['username'] == NULL) {
-
-    } else { ?>
+    if ($_SESSION['username'] == NULL) { } else { ?>
 
         <div class="comment_box">
-
-
             <form action="" method="post">
                 <textarea class="form-control" name="comment" placeholder="আপনার মন্তব্য এখানে লিখুন..."
                     required></textarea>
@@ -15,9 +13,7 @@
             </form>
         </div>
 
-    <?php }
-
-    ?>
+    <?php }?>
 
 
     <div class="comment_view my-2">
@@ -33,13 +29,9 @@
             $date = $data['date'];
             ?>
 
-
             <div class="card p-3  mb-2">
-
                 <div class="d-flex justify-content-between align-items-center">
-
                     <div class="user d-flex flex-row align-items-center">
-
                         <div class="user-img rounded-circle mr-5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                 class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -49,27 +41,12 @@
                             </svg>
                         </div>
 
-                        <div class="font-weight-bold text-primary mx-2">
-                            <?php echo $name ?>
-                        </div>
-                        <small class="font-weight-regular">
-                            <?php echo $comment ?>
-                        </small>
-
+                        <div class="font-weight-bold text-primary mx-2"><?php echo $name ?></div>
+                        <small class="font-weight-regular"><?php echo $comment ?></small>
                     </div>
-
-
-                    <small>
-                        <?php
-                        echo $date
-                            ?>
-                    </small>
-
+                    <small><?php echo $date ?></small>
                 </div>
-
-
             </div>
         <?php } ?>
     </div>
-
 </div>

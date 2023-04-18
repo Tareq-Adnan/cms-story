@@ -1,38 +1,38 @@
 <?php include 'includes/header.php';
-deletePost();
-notify(); ?>
+deletePost(); //Method for delete posts request
+notify(); //after completing any operation a notification popup will appear
+?>
 <!doctype html>
 <html>
 <?Php
 
+//checking if request comming from admin portal or from general user.
 if (isset($_GET['user'])) {
   $id = $_GET['user'];
 
-  $query = "SELECT * FROM posts WHERE post_user_id=$id AND post_status='published'";
-  $run = mysqli_query($connection, $query);
-  $query2 = "SELECT * FROM posts WHERE post_user_id=$id";
-  $run2 = mysqli_query($connection, $query2);
+  $Published_post_query = "SELECT * FROM posts WHERE post_user_id=$id AND post_status='published'";
+  $numOf_published_posts = mysqli_query($connection, $Published_post_query);
+
+  //Query for Fetching all post of the specific user.
+  $queryForallPost = "SELECT * FROM posts WHERE post_user_id=$id";
+  $numof_total_posts = mysqli_query($connection, $queryForallPost);
   confirmation($run);
-  $num = mysqli_num_rows($run);
-  $num2 = mysqli_num_rows($run2);
+  
+  //Counting rows for calculate pending and published post
+  $numOf_published_posts = mysqli_num_rows($numOf_published_posts);
+  $numof_total_posts = mysqli_num_rows($numof_total_posts);
 
 } else {
-  $query = "SELECT * FROM posts WHERE post_user_id='{$_SESSION['user_id']}' AND post_status='published'";
-  $run = mysqli_query($connection, $query);
-  $query2 = "SELECT * FROM posts WHERE post_user_id='{$_SESSION['user_id']}'";
-  $run2 = mysqli_query($connection, $query2);
+  $Published_post_query = "SELECT * FROM posts WHERE post_user_id='{$_SESSION['user_id']}' AND post_status='published'";
+  $run = mysqli_query($connection, $Published_post_query);
+
+  $queryForallPost = "SELECT * FROM posts WHERE post_user_id='{$_SESSION['user_id']}'";
+  $run2 = mysqli_query($connection, $queryForallPost);
   confirmation($run);
   $num = mysqli_num_rows($run);
   $num2 = mysqli_num_rows($run2);
 }
-
-
-
-
 ?>
-
-
-
 
 <head>
   <meta charset='utf-8'>
@@ -89,22 +89,22 @@ if (isset($_GET['user'])) {
           <div class="media align-items-end profile-head">
             <?php
 
-            if(isset($_GET['user'])){
+            //Query for fetching data based on user type.
+            if (isset($_GET['user'])) {
               $query = "SELECT * FROM users WHERE user_id='{$_GET['user']}'";
-            }else{
+            } else {
               $query = "SELECT * FROM users WHERE user_id='{$_SESSION['user_id']}'";
             }
 
-           
-            $run3 = mysqli_query($connection, $query);
+            $userDetails = mysqli_query($connection, $query);
             confirmation($run3);
-            while ($data2 = mysqli_fetch_assoc($run3)) {
-              $username = $data2['username'];
-              $firstName = $data2['first_name'];
-              $lastName = $data2['last_name'];
-              $image = $data2['user_image'];
-              $email = $data2['user_email'];
-              $userType = $data2['user_type'];
+            while ($userData = mysqli_fetch_assoc($userDetails)) {
+              $username = $userData['username'];
+              $firstName = $userData['first_name'];
+              $lastName = $userData['last_name'];
+              $image = $userData['user_image'];
+              $email = $userData['user_email'];
+              $userType = $userData['user_type'];
             }
 
             ?>
@@ -113,37 +113,36 @@ if (isset($_GET['user'])) {
                 href="edit_profile.php?editProfile=<?php echo $_SESSION['user_id'] ?>"
                 class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
             </div>
+
             <div class="media-body mb-5 text-white">
               <h4 class="mt-0 mb-0">
                 <?php echo $firstName . " " . $lastName ?>
               </h4>
-              <p class="small mb-4">Rank:
-                <?php echo $userType ?>
-              </p>
+              <p class="small mb-4">Rank:<?php echo $userType ?></p>
             </div>
           </div>
         </div>
         <div class=" p-4 d-flex justify-content-end text-center">
           <ul class="list-inline mb-0">
+
             <li class="list-inline-item">
               <h5 class="font-weight-bold mb-0 d-block">
-                <?php echo $num2 ?>
+                <?php echo $numof_total_posts ?>
               </h5><small class="text-muted"> <i class="fas fa-image mr-1"></i>Total Post</small>
             </li>
+
             <li class="list-inline-item">
               <h5 class="font-weight-bold mb-0 d-block">
-                <?php echo $num ?>
+                <?php echo $numOf_published_posts ?>
               </h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Approved</small>
             </li>
+
             <li class="list-inline-item">
-
               <h5 class="font-weight-bold mb-0 d-block">
-                <?php
-
-                echo $num2 - $num
-                  ?>
+                <?php echo $numof_total_posts - $numOf_published_posts ?>
               </h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Pending</small>
             </li>
+
           </ul>
         </div>
         <div class="px-4 py-3">
@@ -162,7 +161,7 @@ if (isset($_GET['user'])) {
               </thead>
               <tbody>
                 <?php
-
+                //Showing all post from specific users in a table.
                 while ($data = mysqli_fetch_assoc($run)) {
                   $post_id = $data['post_id'];
                   $title = $data['post_title'];
@@ -171,23 +170,17 @@ if (isset($_GET['user'])) {
                   $postimage = $data['post_image']; ?>
 
                   <tr class="my-auto">
-                    <td>
-                      <?php echo $title ?>
-                    </td>
-                    <td>
-                      <?php echo $author ?>
-                    </td>
-                    <td>
-                      <?php echo substr($content, 0, 100) ?>
-                    </td>
+                    <td><?php echo $title ?></td>
+                    <td><?php echo $author ?></td>
+                    <td><?php echo substr($content, 0, 100) ?></td>
                     <td><img class="img-fluid" style="width:20vh" src="images/<?php echo $postimage ?>" alt=""></td>
+                   
                     <td><a class="btn btn-primary" href="edit-post.php?edit=<?php echo $post_id ?>">Edit</a> <a
                         class="btn btn-primary" href="profile.php?delete=<?php echo $post_id ?>&successDelete">Delete</a>
                     </td>
                   <?php } ?>
-
-
                 </tr>
+
               </tbody>
             </table>
           </div>

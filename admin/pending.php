@@ -1,5 +1,5 @@
 <?php include 'includes/admin_header.php';
-publish();
+publish();//method for catch pending to publish request
 notify();
 ?>
 <div class="app-wrapper">
@@ -14,14 +14,12 @@ notify();
 				<div class="row g-4">
 
 					<?php
-
+					// viewing limited ponding posts at pending post page using pagination
 					$page_1 = pagination();
-
 					$query = "SELECT * FROM posts WHERE post_status='pending'";
 					$execute = mysqli_query($connection, $query);
 					$num = mysqli_num_rows($execute);
 					$num = ceil($num / 8);
-
 
 					$query = "SELECT * FROM posts WHERE post_status='pending' LIMIT $page_1,8";
 					$run = mysqli_query($connection, $query);
@@ -87,9 +85,10 @@ notify();
 														</svg>Edit</a></li>
 												<hr class="dropdown-divider">
 												</li>
-												<li><a class="dropdown-item" href="posts.php?delete=<?php echo $post_id ?>"><svg width="1em" height="1em"
-															viewBox="0 0 16 16" class="bi bi-trash me-2" fill="currentColor"
-															xmlns="http://www.w3.org/2000/svg">
+												<li><a class="dropdown-item"
+														href="posts.php?delete=<?php echo $post_id ?>"><svg width="1em"
+															height="1em" viewBox="0 0 16 16" class="bi bi-trash me-2"
+															fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 															<path
 																d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
 															<path fill-rule="evenodd"
@@ -102,14 +101,9 @@ notify();
 							</div><!--//app-card-->
 						</div><!--//col-->
 					<?php } ?>
-
-
-
-
 				</div><!--//app-card-->
 			</div><!--//col-->
 		</div><!--//row-->
-
 
 		<nav class="app-pagination mt-5">
 			<ul class="pagination justify-content-center">

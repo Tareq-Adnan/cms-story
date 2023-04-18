@@ -27,7 +27,6 @@ ob_start();
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a href="index.php" class="navbar-brand"><img class="logo" src="images/logo.png" alt="" /></a>
-
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navIcon">
                 <i class="bi bi-three-dots"></i>
             </button>
@@ -42,6 +41,7 @@ ob_start();
                     <li class="nav-item"><a href="contact.php" class="nav-link">যোগাযোগ</a></li>
                     <?php
 
+                    //Checking User type.
                     if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'admin') { ?>
 
                         <li class="nav-item">
@@ -72,9 +72,8 @@ ob_start();
                                         d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
                                 </svg> সাইন আউট</a>
                         </li>
-
+                        <!-- matching serverpage name for hiding profile link nav  -->
                     <?php } else if (basename($_SERVER['PHP_SELF']) == 'login.php') {
-
                     } else if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'user') { ?>
 
                                 <li class="nav-item">

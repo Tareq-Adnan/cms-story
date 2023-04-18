@@ -28,19 +28,15 @@
 
         <div class="grid">
             <?php
-
+            // viewing limited posts at search page using pagination and fetching data from databse based on keyword.
             $page_1 = pagination();
-
-           
-
-            $query = "SELECT * FROM posts WHERE post_tags LIKE '%$key%' OR post_title LIKE '%$key%'";
-            $execute = mysqli_query($connection, $query);
-            $num = mysqli_num_rows($execute);
-            $num = ceil($num / 8);
+            $matchedPostData = "SELECT * FROM posts WHERE post_tags LIKE '%$key%' OR post_title LIKE '%$key%'";
+            $executeQuery = mysqli_query($connection, $matchedPostData);
+            $rowCount = mysqli_num_rows($executeQuery);
+            $rowCount = ceil($rowCount / 8);
 
 
             $query = "SELECT * FROM posts WHERE post_tags LIKE '%$key%' OR post_title LIKE '%$key%' LIMIT $page_1,8";
-
             $execute = mysqli_query($connection, $query);
 
             while ($data = mysqli_fetch_assoc($execute)) {
@@ -69,7 +65,7 @@
     <nav class="app-pagination mt-5">
         <ul class="pagination justify-content-center">
 
-            <?php
+            <?php //Showing the total page number using loop.
             for ($i = 1; $i <= $num; $i++) {
                 ?>
                 <li class="page-item active"><a class="page-link" href="search.php?page=<?php echo $i ?>"><?php echo $i ?></a>
@@ -77,6 +73,6 @@
 
             <?php } ?>
         </ul>
-    </nav><!--//app-pagination-->
+    </nav>
 </section>
 <?php include "includes/footer.php" ?>

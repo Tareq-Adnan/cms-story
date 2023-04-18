@@ -1,11 +1,19 @@
 <?php
 
-function filterPost(){
-    if(isset($_POST['filterPost'])){
-        $id=$_POST['user_id'];
-    }
-}
+//select Category While Writing Story
+function selectCat()
+{
+    global $connection;
 
+    $query = "SELECT * FROM category";
+    $run = mysqli_query($connection, $query);
+    confirmation($run);
+    while ($data = mysqli_fetch_assoc($run)) {
+
+        echo "<option class='dropdown' value='"."{$data['cat_id']}'>" . "{$data['cat_title']}"."</option>";
+    }
+
+}
 
 function pagination()
 {
@@ -128,6 +136,7 @@ function login()
 
 }
 
+//query Confirmation 
 function confirmation($up)
 {
     global $connection;
@@ -240,8 +249,7 @@ function addPost()
     }
 }
 
-
-
+//making post public after checking.
 function publish()
 {
     global $connection;
@@ -253,6 +261,8 @@ function publish()
         confirmation($run);
     }
 }
+
+//reject User function 
 function reject()
 {
     global $connection;
@@ -264,6 +274,7 @@ function reject()
         confirmation($run);
     }
 }
+//Approve User Registration function 
 function accept()
 {
     global $connection;
@@ -275,6 +286,8 @@ function accept()
         confirmation($run);
     }
 }
+
+//Delete User profiles
 function delete()
 {
     global $connection;
@@ -296,7 +309,7 @@ function deletePost()
     }
 }
 
-
+//User Registration
 function registration()
 {
     global $connection;

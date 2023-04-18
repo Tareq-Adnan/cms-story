@@ -1,6 +1,7 @@
 <?php include 'includes/admin_header.php';
-reject();
-accept(); ?>
+reject();//method for catch user rejection request
+accept();//method for catch user acceptance request
+ ?>
 <div class="app-wrapper">
 	<div class="app-content pt-3 p-md-3 p-lg-4">
 		<div class="container-xl">
@@ -13,8 +14,8 @@ accept(); ?>
 				<div class="row g-4">
 
 					<?php
+					// viewing limited ponding posts at pending post page using pagination
 					$page_1 = pagination();
-
 					$query = "SELECT * FROM users WHERE status='pending'";
 					$execute = mysqli_query($connection, $query);
 					$num = mysqli_num_rows($execute);
@@ -27,8 +28,6 @@ accept(); ?>
 					while ($data = mysqli_fetch_assoc($run)) {
 						$user_id = $data['user_id'];
 						?>
-
-
 						<div class="col-6 col-md-4 col-xl-3 col-xxl-2">
 							<div class="app-card app-card-doc shadow-sm h-100">
 								<div style="overflow: hidden;" class="app-card-thumb-holder p-3">
@@ -103,10 +102,6 @@ accept(); ?>
 							</div><!--//app-card-->
 						</div><!--//col-->
 					<?php } ?>
-
-
-
-
 				</div><!--//app-card-->
 			</div><!--//col-->
 		</div><!--//row-->

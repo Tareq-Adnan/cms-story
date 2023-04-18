@@ -10,8 +10,8 @@ notify(); ?>
                 <h2>গল্প লিখুন</h2>
             </div>
 
-            <div class="add-post">
 
+            <div class="add-post">
                 <div class="add_post_field">
                     <input type="text" name="title" placeholder="গল্পের শিরোমাম" class="">
                 </div>
@@ -33,39 +33,31 @@ notify(); ?>
                     <input type="text" readonly placeholder="লেখকের নাম" name="author"
                         value="<?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name'] ?>">
                 </div>
+
                 <div class="add_post_field">
                     <input type="text" placeholder="গল্পের ট্যাগ" name="tag" class="">
                 </div>
+
+
                 <div class="add_post_field">
-                    <label for="category">গল্পের ধর</label> <br><select class="dropdown" name="category" id="">
-                        <?php
-                        $query = "SELECT * FROM category";
-                        $run = mysqli_query($connection, $query);
-                        confirmation($run);
-                        while ($data = mysqli_fetch_assoc($run)) {
-                            ?>
-                            <option class="dropdown" value="<?php echo $data['cat_id'] ?>"><?php echo $data['cat_title'] ?>
-                            </option>
-                        <?php }
-                        ?>
+                    <label for="category">গল্পের ধর</label> <br>
+                    <select class="dropdown" name="category" id="">
+                        <?php selectCat(); ?>
+
                     </select>
                 </div>
+
                 <div class="add_post_field">
                     <textarea placeholder="গল্প লিখুন..." name="content" rows="6" class=""></textarea>
                 </div>
+
                 <div class="add_post_field_btn">
                     <input type="submit" name="addPost" value="সাবমিট" class="">
                 </div>
 
             </div>
-
-
-
-
         </form>
     </div>
-
-
     </div>
 </section>
 <?php include "includes/footer.php" ?>

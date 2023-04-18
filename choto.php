@@ -1,3 +1,6 @@
+
+<!-- this page is used to show category wise stories -->
+
 <?php include 'includes/header.php';
 if (isset($_GET['cat_id'])) {
     $id = $_GET['cat_id'];
@@ -8,17 +11,14 @@ if (isset($_GET['cat_id'])) {
    
     <div class="container">
 
-        <h1 class="text-center my-2">
-            <?php echo $name ?>
-        </h1>
+        <h1 class="text-center my-2"><?php echo $name ?></h1>
+
         <div class="grid">
             <?php
-
             $query = "SELECT * FROM posts WHERE post_category_id=$id";
             $run = mysqli_query($connection, $query);
 
-            while ($data = mysqli_fetch_assoc($run)) {
-                ?>
+            while ($data = mysqli_fetch_assoc($run)) {?>
                 <div class="card" style="width: 18rem;">
                     <div class="inner">
                         <img class="card-img-top img-fluid"

@@ -1,5 +1,3 @@
-<?php  ?>
-
 <div class="col-auto">
 	<div class="page-utilities">
 		<div class="row g-2 justify-content-start justify-content-md-end align-items-center">
@@ -18,8 +16,6 @@
 				$query="SELECT * FROM users WHERE user_type='user'";
 				$run=mysqli_query($connection,$query);
 				confirmation($run);
-
-
 			?>
 				<select class="form-select w-auto">
 					<?php while($data=mysqli_fetch_assoc($run)){?>

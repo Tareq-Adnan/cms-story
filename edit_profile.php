@@ -1,16 +1,14 @@
-<?php include("includes/header.php"); 
-
-registration();
-
+<?php include("includes/header.php");
 
 if (isset($_GET['editProfile'])) {
 
     $user_id = $_GET['editProfile'];
 }
-
+//Fetching user data from database based on user id.
 $query = "SELECT * FROM users WHERE user_id='$user_id'";
 $run = mysqli_query($connection, $query);
 confirmation($run);
+
 while ($data = mysqli_fetch_assoc($run)) {
     $username = $data['username'];
     $firstName = $data['first_name'];
@@ -30,9 +28,6 @@ updateProfile($user_id);
 <section class="post_LatestStory">
 
     <div class="container login-form">
-
-
-
         <form action="" method="post" enctype="multipart/form-data">
             <div class="login_title">
                 <h2>প্রোফাইল আপডেট করুন</h2>
@@ -40,15 +35,16 @@ updateProfile($user_id);
             <div class="login">
 
                 <div class="field">
-                    <input type="text" readonly placeholder="ইউজারনেম..." name="username" value="<?php echo $username ?>">
+                    <input type="text" readonly placeholder="ইউজারনেম..." name="username"
+                        value="<?php echo $username ?>">
                 </div>
 
                 <div class="field">
                     <div class="my-2 ">
-                    <img class="rounded" src="images/<?php echo $image ?>" alt="" style="width:350px; height:300px" >
+                        <img class="rounded" src="images/<?php echo $image ?>" alt="" style="width:350px; height:300px">
                     </div>
-                    
-                <label for="pic" class="label2">
+
+                    <label for="pic" class="label2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-images" viewBox="0 0 16 16">
                             <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
@@ -58,16 +54,21 @@ updateProfile($user_id);
                         <span id="pic-label">ছবি সংযোগ করুন</span></label>
                     <input type="file" name="image" id="pic">
                 </div>
+
                 <div class="field">
-                    <input type="text" placeholder="নামের প্রথম অংশ..." name="first_name" value="<?php echo $firstName ?>">
+                    <input type="text" placeholder="নামের প্রথম অংশ..." name="first_name"
+                        value="<?php echo $firstName ?>">
                 </div>
+
                 <div class="field">
                     <input type="text" placeholder="নামের শেষ অংশ..." name="last_name" value="<?php echo $lastName ?>">
                 </div>
 
                 <div class="field">
-                    <input type="password" placeholder="পাসওয়ার্ড..." name="password" class="" value="<?php echo $password ?>">
+                    <input type="password" placeholder="পাসওয়ার্ড..." name="password" class=""
+                        value="<?php echo $password ?>">
                 </div>
+
                 <div class="field">
                     <input type="email" placeholder="ই-মেইল..." name="email" class="" value="<?php echo $email ?>">
                 </div>
@@ -75,22 +76,13 @@ updateProfile($user_id);
                 <div class="submit-btn">
                     <input type="submit" name="updateProfile" value="সাবমিট" class="">
                 </div>
-
             </div>
-
-
-
-
         </form>
     </div>
-
-
     </div>
 </section>
 
-
 <?php include "includes/footer.php" ?>
-
 <script type="text/javascript">
     const picbtn = document.getElementById('pic');
     const label = document.getElementById('pic-label');

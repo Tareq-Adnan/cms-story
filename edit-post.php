@@ -1,12 +1,9 @@
 <?php include 'includes/header.php';
 
-
 if (isset($_GET['edit'])) {
-
     $post_id = $_GET['edit'];
 }
-
-
+// query for fetching posts data from database
 $query = "SELECT * FROM posts WHERE post_id='$post_id'";
 $run = mysqli_query($connection, $query);
 confirmation($run);
@@ -17,23 +14,19 @@ while ($data = mysqli_fetch_assoc($run)) {
     $tag = $data['post_tags'];
     $category = $data['post_category_id'];
     $image = $data['post_image'];
-
-
 }
+
 EditPost($post_id);
 
 ?>
 <section class="post_LatestStory">
-
     <div class="container add-post">
-
         <form action="" method="post" enctype="multipart/form-data">
             <div class="story_title">
                 <h2>পরিবর্তন করুন</h2>
             </div>
 
             <div class="add-post">
-
                 <div class="add_post_field">
                     <input type="text" name="title" placeholder="গল্পের শিরোমাম" value="<?php echo $title ?>">
                 </div>
@@ -62,17 +55,7 @@ EditPost($post_id);
                 </div>
                 <div class="add_post_field">
                     <label for="category">গল্পের ধর</label> <br><select class="dropdown" name="category" id="">
-                        <?php
-                        $query = "SELECT * FROM category";
-                        $run = mysqli_query($connection, $query);
-                        confirmation($run);
-                        while ($data = mysqli_fetch_assoc($run)) {
-                            ?>
-
-                            <option class="dropdown" value="<?php echo $data['cat_id'] ?>"><?php echo $data['cat_title'] ?>
-                            </option>
-                        <?php }
-                        ?>
+                        <?php selectCat() ?>
                     </select>
                 </div>
                 <div class="add_post_field">
@@ -84,18 +67,13 @@ EditPost($post_id);
                 </div>
 
             </div>
-
-
-
-
         </form>
     </div>
-
-
-    </div>
+</div>
 </section>
 <?php include "includes/footer.php" ?>
 
+<!-- a javascript function for custom image chooice  -->
 <script type="text/javascript">
     const picbtn = document.getElementById('pic');
     const label = document.getElementById('pic-label');
@@ -104,7 +82,5 @@ EditPost($post_id);
         if (picbtn.value) {
             label.innerHTML = picbtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
         }
-    })
-
-
+    });
 </script>

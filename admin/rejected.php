@@ -1,5 +1,5 @@
 <?php include 'includes/admin_header.php';
-reject();
+reject(); //method for catching reject request.
 
 ?>
 <div class="app-wrapper">
@@ -14,9 +14,8 @@ reject();
 				<div class="row g-4">
 
 					<?php
-
+					// viewing limited users at rejected users page using pagination
 					$page_1 = pagination();
-
 					$query = "SELECT * FROM users WHERE status='rejected'";
 					$execute = mysqli_query($connection, $query);
 					$num = mysqli_num_rows($execute);
@@ -27,9 +26,7 @@ reject();
 					confirmation($run);
 
 					while ($data = mysqli_fetch_assoc($run)) {
-						$post_id = $data['user_id'];
-						?>
-
+						$post_id = $data['user_id']; ?>
 
 						<div class="col-6 col-md-4 col-xl-3 col-xxl-2">
 							<div class="app-card app-card-doc shadow-sm h-100">
@@ -40,6 +37,7 @@ reject();
 									</span>
 									<a class="app-card-link-mask" href="#file-link"></a>
 								</div>
+
 								<div class="app-card-body p-3 has-card-actions">
 									<h4 class="app-doc-title truncate mb-0"><a href="#file-link">
 											<?php echo $data['first_name'] . " " . $data['last_name'] ?>
@@ -49,6 +47,7 @@ reject();
 											<?php echo $data['user_email'] ?>
 										</p>
 									</div><!--//app-doc-meta-->
+
 									<div class="app-card-actions">
 										<div class="dropdown">
 											<div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
@@ -93,14 +92,9 @@ reject();
 							</div><!--//app-card-->
 						</div><!--//col-->
 					<?php } ?>
-
-
-
-
 				</div><!--//app-card-->
 			</div><!--//col-->
 		</div><!--//row-->
-
 
 		<nav class="app-pagination mt-5">
 			<ul class="pagination justify-content-center">
