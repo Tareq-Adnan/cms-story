@@ -1,6 +1,12 @@
 <?php include "../includes/functions.php";
 include '../includes/db.php';
+ob_start();
 session_start();
+
+if($_SESSION['user_type']==null || $_SESSION['user_type']=='user'){
+	header("Location: ../index.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +18,9 @@ session_start();
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<!-- <script type="text/javascript">
+        window.history.forward();
+    </script> -->
 	<meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
 	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
 	<link rel="shortcut icon" href="favicon.ico">

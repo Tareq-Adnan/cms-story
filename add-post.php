@@ -1,6 +1,9 @@
 <?php include 'includes/header.php';
 addPost();
-notify(); ?>
+notify(); 
+if($_SESSION['user_type']==null){
+	header("Location: index.php");
+}?>
 <section class="post_LatestStory">
 
     <div class="container add-post">

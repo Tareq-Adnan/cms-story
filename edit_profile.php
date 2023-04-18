@@ -1,5 +1,7 @@
 <?php include("includes/header.php");
-
+if($_SESSION['user_type']==null){
+	header("Location: index.php");
+}
 if (isset($_GET['editProfile'])) {
 
     $user_id = $_GET['editProfile'];
