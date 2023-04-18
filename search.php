@@ -30,7 +30,7 @@
             <?php
             // viewing limited posts at search page using pagination and fetching data from databse based on keyword.
             $page_1 = pagination();
-            $matchedPostData = "SELECT * FROM posts WHERE post_tags LIKE '%$key%' OR post_title LIKE '%$key%'";
+            $matchedPostData = "SELECT * FROM posts WHERE post_status='published' AND WHERE post_tags LIKE '%$key%' OR post_title LIKE '%$key%'";
             $executeQuery = mysqli_query($connection, $matchedPostData);
             $rowCount = mysqli_num_rows($executeQuery);
             $rowCount = ceil($rowCount / 8);
@@ -66,7 +66,7 @@
         <ul class="pagination justify-content-center">
 
             <?php //Showing the total page number using loop.
-            for ($i = 1; $i <= $num; $i++) {
+            for ($i = 1; $i <= $rowCount; $i++) {
                 ?>
                 <li class="page-item active"><a class="page-link" href="search.php?page=<?php echo $i ?>"><?php echo $i ?></a>
                 </li>

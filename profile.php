@@ -16,21 +16,22 @@ if (isset($_GET['user'])) {
   //Query for Fetching all post of the specific user.
   $queryForallPost = "SELECT * FROM posts WHERE post_user_id=$id";
   $numof_total_posts = mysqli_query($connection, $queryForallPost);
-  confirmation($run);
+  confirmation($numof_total_posts);
   
   //Counting rows for calculate pending and published post
-  $numOf_published_posts = mysqli_num_rows($numOf_published_posts);
-  $numof_total_posts = mysqli_num_rows($numof_total_posts);
+  $numOf_published_postsCount = mysqli_num_rows($numOf_published_posts);
+  $numof_total_postsCount = mysqli_num_rows($numof_total_posts);
 
 } else {
   $Published_post_query = "SELECT * FROM posts WHERE post_user_id='{$_SESSION['user_id']}' AND post_status='published'";
-  $run = mysqli_query($connection, $Published_post_query);
+  $numOf_published_posts = mysqli_query($connection, $Published_post_query);
 
   $queryForallPost = "SELECT * FROM posts WHERE post_user_id='{$_SESSION['user_id']}'";
-  $run2 = mysqli_query($connection, $queryForallPost);
-  confirmation($run);
-  $num = mysqli_num_rows($run);
-  $num2 = mysqli_num_rows($run2);
+  $numof_total_posts = mysqli_query($connection, $queryForallPost);
+  confirmation($numof_total_posts);
+
+  $numOf_published_postsCount = mysqli_num_rows($numOf_published_posts);
+  $numof_total_postsCount = mysqli_num_rows($numof_total_posts);
 }
 ?>
 
@@ -97,7 +98,7 @@ if (isset($_GET['user'])) {
             }
 
             $userDetails = mysqli_query($connection, $query);
-            confirmation($run3);
+            confirmation($userDetails);
             while ($userData = mysqli_fetch_assoc($userDetails)) {
               $username = $userData['username'];
               $firstName = $userData['first_name'];
@@ -127,19 +128,19 @@ if (isset($_GET['user'])) {
 
             <li class="list-inline-item">
               <h5 class="font-weight-bold mb-0 d-block">
-                <?php echo $numof_total_posts ?>
+                <?php echo $numof_total_postsCount ?>
               </h5><small class="text-muted"> <i class="fas fa-image mr-1"></i>Total Post</small>
             </li>
 
             <li class="list-inline-item">
               <h5 class="font-weight-bold mb-0 d-block">
-                <?php echo $numOf_published_posts ?>
+                <?php echo $numOf_published_postsCount ?>
               </h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Approved</small>
             </li>
 
             <li class="list-inline-item">
               <h5 class="font-weight-bold mb-0 d-block">
-                <?php echo $numof_total_posts - $numOf_published_posts ?>
+                <?php echo $numof_total_postsCount - $numOf_published_postsCount ?>
               </h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Pending</small>
             </li>
 
@@ -162,7 +163,8 @@ if (isset($_GET['user'])) {
               <tbody>
                 <?php
                 //Showing all post from specific users in a table.
-                while ($data = mysqli_fetch_assoc($run)) {
+                
+                while ($data = mysqli_fetch_assoc($numOf_published_posts)) {
                   $post_id = $data['post_id'];
                   $title = $data['post_title'];
                   $author = $data['post_author'];

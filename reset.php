@@ -7,7 +7,7 @@
 
         <form action="" method="post">
             <div class="login_title">
-                <h2>সাইন ইন</h2>
+                <h2>পাসওয়ার্ড পুনরায় সেট করুন</h2>
             </div>
 
             <div class="login">
@@ -15,20 +15,14 @@
                     <?php echo $msg; ?>
                 </p>
                 <div class="field">
-                    <input type="text" name="username" placeholder="ইউজারনেম..." class="" required>
+                    <input type="email" name="email" placeholder="ই-মেইল..." class="" required>
                 </div>
 
-                <div class="field">
-                    <input type="password" placeholder="পাসওয়ার্ড..." name="password" class="" required>
-                </div>
                 <div class="submit-btn">
                     <input type="submit" name="login" value="সাবমিট" class="">
                 </div>
                 <div class="reg">
-                    <a href="registration.php">একাউন্ট তৈরি করুন...</a>
-                </div>
-                <div class="reg">
-                    <a href="reset.php">পাসওয়ার্ড ভুলে গেছেন?...</a>
+                    <a href="login.php">লগিন করুন...</a>
                 </div>
 
             </div>

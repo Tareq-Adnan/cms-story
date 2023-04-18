@@ -54,7 +54,7 @@
             $num = mysqli_num_rows($execute);
             $num = ceil($num / 8);
 
-            $query = "SELECT * FROM posts LIMIT $page_1,8";
+            $query = "SELECT * FROM posts WHERE post_status='published' LIMIT $page_1,8";
             $execute = mysqli_query($connection, $query);
             while ($data = mysqli_fetch_assoc($execute)) {?>
 
