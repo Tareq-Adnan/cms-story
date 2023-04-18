@@ -1,16 +1,26 @@
 <div class="container">
 
-    <div class="comment_box">
+    <?php
+    if ($_SESSION['username'] == NULL) {
+
+    } else { ?>
+
+        <div class="comment_box">
 
 
-        <form action="" method="post">
-            <textarea class="form-control" name="comment" placeholder="আপনার মন্তব্য এখানে লিখুন..."
-                required></textarea>
-            <input class="btn btn-primary my-2" type="submit" name="comment_submit" value="Post Comment">
-        </form>
-    </div>
+            <form action="" method="post">
+                <textarea class="form-control" name="comment" placeholder="আপনার মন্তব্য এখানে লিখুন..."
+                    required></textarea>
+                <input class="btn btn-primary my-2" type="submit" name="comment_submit" value="Post Comment">
+            </form>
+        </div>
 
-    <div class="comment_view">
+    <?php }
+
+    ?>
+
+
+    <div class="comment_view my-2">
         <?php
         $id = $_GET['view'];
         $query = "SELECT * FROM comments WHERE comment_post_id=$id";

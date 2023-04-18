@@ -38,10 +38,10 @@ delete(); ?>
 									<span class="badge bg-success">
 										<?php echo $data['user_type'] ?>
 									</span>
-									<a class="app-card-link-mask" href="#file-link"></a>
+									<a class="app-card-link-mask" href="../profile.php?user=<?php echo $user_id ?>"></a>
 								</div>
 								<div class="app-card-body p-3 has-card-actions">
-									<h4 class="app-doc-title truncate mb-0"><a href="#file-link">
+									<h4 class="app-doc-title truncate mb-0"><a href="../profile.php?user=<?php echo $user_id ?>">
 											<?php echo $data['first_name'] . " " . $data['last_name'] ?>
 										</a></h4>
 									<div class="app-doc-meta">

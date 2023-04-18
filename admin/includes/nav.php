@@ -8,6 +8,18 @@
 	$val="";
 	$val2="active";
  }
+ else if($pageName=='pending.php'){
+	$val2="";
+	$val3="active";
+ }
+ else if($pageName=='users.php'){
+	$val3="";
+	$val4="active";
+ }
+ else if($pageName=='pending.php'){
+	$val4="";
+	$val5="active";
+ }
 
 ?>
 
@@ -75,7 +87,7 @@
 											d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z" />
 									</svg>
 								</span>
-								<span class="nav-link-text <?php echo $val?>">Users</span>
+								<span class="nav-link-text <?php echo $val4?>">Users</span>
 								<span class="submenu-arrow">
 									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
 										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -89,11 +101,11 @@
 							
 							<div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
 								<ul class="submenu-list list-unstyled">
-									<li class="submenu-item <?php echo $val?>"><a class="submenu-link"
+									<li class="submenu-item <?php echo $val5?>"><a class="submenu-link"
 											href="users.php">Registered Users</a></li>
-									<li class="submenu-item <?php echo $val?>"><a class="submenu-link" href="pending-user.php">Pending</a>
+									<li class="submenu-item <?php echo $val6?>"><a class="submenu-link" href="pending-user.php">Pending</a>
 									</li>
-									<li class="submenu-item <?php echo $val?>"><a class="submenu-link" href="rejected.php">Rejected</a>
+									<li class="submenu-item <?php echo $val7?>"><a class="submenu-link" href="rejected.php">Rejected</a>
 									</li>
 								</ul>
 							</div>

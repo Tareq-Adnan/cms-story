@@ -26,7 +26,7 @@
                         </span>
                     </p>
                     <p class="short">
-                        <?php echo substr($data['post_content'], 0, 400); ?>
+                        <?php echo substr($data['post_content'], 0, 340); ?>
                     </p>
                     <a href="post.php?view=<?php echo $data['post_id'] ?>" class="btn btn-success b">আরও পড়ুন...</a>
                 </div>

@@ -4,15 +4,29 @@ notify(); ?>
 <!doctype html>
 <html>
 <?Php
-$id=$_GET['user'];
+
+if (isset($_GET['user'])) {
+  $id = $_GET['user'];
+
   $query = "SELECT * FROM posts WHERE post_user_id=$id AND post_status='published'";
   $run = mysqli_query($connection, $query);
-
   $query2 = "SELECT * FROM posts WHERE post_user_id=$id";
   $run2 = mysqli_query($connection, $query2);
   confirmation($run);
   $num = mysqli_num_rows($run);
   $num2 = mysqli_num_rows($run2);
+
+} else {
+  $query = "SELECT * FROM posts WHERE post_user_id='{$_SESSION['user_id']}' AND post_status='published'";
+  $run = mysqli_query($connection, $query);
+  $query2 = "SELECT * FROM posts WHERE post_user_id='{$_SESSION['user_id']}'";
+  $run2 = mysqli_query($connection, $query2);
+  confirmation($run);
+  $num = mysqli_num_rows($run);
+  $num2 = mysqli_num_rows($run2);
+}
+
+
 
 
 ?>
@@ -75,12 +89,15 @@ $id=$_GET['user'];
           <div class="media align-items-end profile-head">
             <?php
 
+            if(isset($_GET['user'])){
+              $query = "SELECT * FROM users WHERE user_id='{$_GET['user']}'";
+            }else{
+              $query = "SELECT * FROM users WHERE user_id='{$_SESSION['user_id']}'";
+            }
 
-            $id = $_GET['user'];
-            $query = "SELECT * FROM users WHERE user_id=$id";
+           
             $run3 = mysqli_query($connection, $query);
             confirmation($run3);
-
             while ($data2 = mysqli_fetch_assoc($run3)) {
               $username = $data2['username'];
               $firstName = $data2['first_name'];
