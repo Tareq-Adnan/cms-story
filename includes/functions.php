@@ -9,7 +9,7 @@ function selectCat()
     confirmation($run);
     while ($data = mysqli_fetch_assoc($run)) {
 
-        echo "<option class='dropdown' value='"."{$data['cat_id']}'>" . "{$data['cat_title']}"."</option>";
+        echo "<option class='dropdown' value='" . "{$data['cat_id']}'>" . "{$data['cat_title']}" . "</option>";
     }
 
 }
@@ -59,10 +59,10 @@ function notify()
                 icon: "success",
                 button: "ঠিক আছে",
             });
-            
+
         </script>
-        
-    <?php  }
+
+    <?php }
 
     if (isset($_POST['addPost'])) {
         ?>
@@ -103,6 +103,10 @@ function login()
             $username = mysqli_real_escape_string($connection, $username);
             $password = mysqli_real_escape_string($connection, $password);
 
+            if(!checkUsername($username)){
+                return "ইউজারনেম পাওয়া যায়নি!";
+            }
+
             $query = "SELECT * FROM users WHERE username='{$username}'";
             $run = mysqli_query($connection, $query);
             confirmation($run);
@@ -118,7 +122,7 @@ function login()
 
             }
 
-            if ($username === $uname && password_verify($password,$pass) ) {
+            if ($username === $uname && password_verify($password, $pass)) {
                 $_SESSION['user_id'] = $id;
                 $_SESSION['username'] = $uname;
                 $_SESSION['password'] = $pass;
@@ -128,7 +132,7 @@ function login()
 
                 header("Location: index.php");
             } else {
-                header("Location: index.php");
+               return "ইউজারনেম বা পাসওয়ার্ড সঠিক নয়!";
             }
 
         }
@@ -195,14 +199,14 @@ function updateProfile($user_id)
         $firstName = $_POST['first_name'];
         $lastName = $_POST['last_name'];
         $email = $_POST['email'];
-        $password =$_POST['password'];
+        $password = $_POST['password'];
 
-        if(empty($password)){
+        if (empty($password)) {
             $query = "SELECT * FROM users WHERE user_id=$user_id";
             $e = mysqli_query($connection, $query);
 
             while ($data = mysqli_fetch_assoc($e)) {
-                $password=$data['password'];
+                $password = $data['password'];
             }
         }
 
@@ -219,7 +223,7 @@ function updateProfile($user_id)
 
             while ($data = mysqli_fetch_assoc($e)) {
                 $image = $data['user_image'];
-                $password=$data['password'];
+                $password = $data['password'];
             }
         }
 
@@ -308,9 +312,9 @@ function delete()
 function deletePost()
 {
     global $connection;
-    if($_SESSION['username']==null || !$_SESSION['user_type']=='admin' ){
+    if ($_SESSION['username'] == null || !$_SESSION['user_type'] == 'admin') {
         header("Location: index.php");
-    }else{
+    } else {
         if (isset($_GET['delete'])) {
             $id = $_GET['delete'];
             $query = "DELETE FROM posts WHERE post_id='{$id}'";
@@ -318,9 +322,39 @@ function deletePost()
             confirmation($run);
         }
     }
-    
+
+}
+function checkUsername($username)
+{
+
+    global $connection;
+
+    $query = "SELECT username FROM users WHERE username='$username'";
+    $run = mysqli_query($connection, $query);
+    confirmation($run);
+    if (mysqli_num_rows($run) > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
 }
 
+function checkEmail($email)
+{
+
+    global $connection;
+
+    $query = "SELECT user_email FROM users WHERE user_email='$email'";
+    $run = mysqli_query($connection, $query);
+    confirmation($run);
+    if (mysqli_num_rows($run) > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
 //User Registration
 function registration()
 {
@@ -330,31 +364,53 @@ function registration()
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
         $email = $_POST['email'];
-        $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
-
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $image = $_FILES['image']['name'];
         $image_temp = $_FILES['image']['tmp_name'];
 
         move_uploaded_file($image_temp, "./images/$image");
 
+    if (checkUsername($username)) {
+        return $message = 'username already exits!';
 
-        $query = "INSERT INTO users(username,user_type,user_email,user_image,first_name,last_name,password,date,status) VALUES('$username','user','$email','$image','$first_name','$last_name','$password',now(),'pending')";
-        $run = mysqli_query($connection, $query);
-        confirmation($run);
+    } else if (checkEmail($email)) {
+        return $message = 'already registered with this email!';
+        ;
+
+    } else if (strlen($username) < 4 || strlen($password) < 4) {
+        return $message = "the input should be greater than 4 character!";}
+        else{
+            if (!empty($username) && !empty($password) && !empty($email)) {
+                
+                $query = "INSERT INTO users(username,user_type,user_email,user_image,first_name,last_name,password,date,status) VALUES('$username','user','$email','$image','$first_name','$last_name','$password',now(),'pending')";
+                $run = mysqli_query($connection, $query);
+                confirmation($run);
+    
+                return $message = "<p style='color:green;'>Regsitration Successful!</p>";
+            } else {
+                return $message = "<p style='color: red;'>Field can't be empty!</p>";
+            }
+        }
+
+      
+
+
+      
 
 
     }
 }
 
-	// Program to display current page URL.
-function share(){
+// Program to display current page URL.
+function share()
+{
     $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
-    === 'on' ? "https" : "http") .
-    "://" . $_SERVER['HTTP_HOST'] .
-    $_SERVER['REQUEST_URI'];
-return $link;
+        === 'on' ? "https" : "http") .
+        "://" . $_SERVER['HTTP_HOST'] .
+        $_SERVER['REQUEST_URI'];
+    return $link;
 }
 
 
-	
+
 ?>

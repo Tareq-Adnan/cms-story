@@ -32,7 +32,7 @@ comment();//method which get the post comment request.
                 </p>
 
                 <pre class="view">
-                    <?php echo trim($post_content) ?>
+                    <?php echo $post_content ?>
                 </pre>
 
             </div>

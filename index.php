@@ -72,7 +72,9 @@
                             <?php echo substr($data['post_content'], 0, 200) ?><br>
                             <a style="position:relative;botton:2px;" href="post.php?view=<?php echo $data['post_id'] ?>"
                                 class="btn btn-primary">সম্পূর্ণ পড়ুন...</a>
+                             
                         </p>
+                        
                     </div>
                 </div>
             <?php } ?>

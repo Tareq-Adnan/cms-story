@@ -8,7 +8,7 @@ registration();//method which catch registration form data.
                 <h2>সাইন আপ</h2>
             </div>
             <div class="login">
-
+                <?php echo registration(); ?>
                 <div class="field">
                     <input type="text" placeholder="ইউজারনেম..." name="username" required>
                 </div>

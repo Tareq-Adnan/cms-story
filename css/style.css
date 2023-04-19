@@ -238,3 +238,7 @@
     background: #bb0000;
     color: white;
   }
+
+  .shareClass{
+   visibility: hidden;
+  }
