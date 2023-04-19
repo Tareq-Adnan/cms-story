@@ -4,14 +4,18 @@
 <?php include 'includes/header.php';
 if (isset($_GET['cat_id'])) {
     $id = $_GET['cat_id'];
-    $name = $_GET['name'];
+   
 }
+$query="SELECT cat_title FROM category WHERE cat_id=$id";
+$run=mysqli_query($connection,$query);
+confirmation($run);
+$data=mysqli_fetch_assoc($run);
 ?>
 <section>
    
     <div class="container">
 
-        <h1 class="text-center my-2"><?php echo $name ?></h1>
+        <h1 class="text-center my-2"><?php echo $data['cat_title'] ?></h1>
 
         <div class="grid">
             <?php

@@ -1,5 +1,4 @@
 <?php
-
 //select Category While Writing Story
 function selectCat()
 {
@@ -309,12 +308,17 @@ function delete()
 function deletePost()
 {
     global $connection;
-    if (isset($_GET['delete'])) {
-        $id = $_GET['delete'];
-        $query = "DELETE FROM posts WHERE post_id='{$id}'";
-        $run = mysqli_query($connection, $query);
-        confirmation($run);
+    if($_SESSION['username']==null || !$_SESSION['user_type']=='admin' ){
+        header("Location: index.php");
+    }else{
+        if (isset($_GET['delete'])) {
+            $id = $_GET['delete'];
+            $query = "DELETE FROM posts WHERE post_id='{$id}'";
+            $run = mysqli_query($connection, $query);
+            confirmation($run);
+        }
     }
+    
 }
 
 //User Registration
@@ -342,4 +346,15 @@ function registration()
     }
 }
 
+	// Program to display current page URL.
+function share(){
+    $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
+    === 'on' ? "https" : "http") .
+    "://" . $_SERVER['HTTP_HOST'] .
+    $_SERVER['REQUEST_URI'];
+return $link;
+}
+
+
+	
 ?>

@@ -25,6 +25,16 @@ ob_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="css/ad_style.css?v=<?php echo time(); ?>">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <meta property="og:title" content="<?php echo $post_titile?>"/>
+    <meta property="og:image" content="<?php echo $_SERVER['HTTP_HOST'].'/story/images/'.$post_image?>"/>
+    <meta property="og:url" content="<?php echo share() ?>"/>
+    <meta property="og:site_name" content="<?php echo $_SERVER['HTTP_HOST']; ?>"/>
+    
+
+
+
+
 </head>
 
 <body>
@@ -38,9 +48,9 @@ ob_start();
             <div class="collapse navbar-collapse" id="navIcon">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="index.php" class="nav-link">হোম</a></li>
-                    <li class="nav-item"><a href="choto.php?cat_id=1&name=ছোট গল্প" class="nav-link">ছোট গল্প</a></li>
+                    <li class="nav-item"><a href="choto.php?cat_id=1" class="nav-link">ছোট গল্প</a></li>
                     <li class="nav-item">
-                        <a href="choto.php?cat_id=2&name=বৈজ্ঞানিক কল্পকাহিনি" class="nav-link">বৈজ্ঞানিক কল্পকাহিনি</a>
+                        <a href="choto.php?cat_id=2" class="nav-link">বৈজ্ঞানিক কল্পকাহিনি</a>
                     </li>
                     <li class="nav-item"><a href="contact.php" class="nav-link">যোগাযোগ</a></li>
                     <?php
