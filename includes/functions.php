@@ -110,7 +110,6 @@ function login()
             $query = "SELECT * FROM users WHERE username='{$username}'";
             $run = mysqli_query($connection, $query);
             confirmation($run);
-
             while ($data = mysqli_fetch_array($run)) {
 
                 $id = $data['user_id'];
@@ -134,7 +133,6 @@ function login()
             } else {
                return "ইউজারনেম বা পাসওয়ার্ড সঠিক নয়!";
             }
-
         }
     }
 
