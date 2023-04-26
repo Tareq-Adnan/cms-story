@@ -2,42 +2,53 @@
 
 <section class="LatestStory">
     <div class="container">
-        <div class="content">
-            <div class="card-img">
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
                 <?php
                 // query for fetching latest post from database
-                $query = "SELECT * FROM posts ORDER BY post_id DESC LIMIT 1";
+                $query = "SELECT * FROM posts ORDER BY post_id DESC LIMIT 3";
                 $run = mysqli_query($connection, $query);
                 while ($data = mysqli_fetch_assoc($run)) {
                     ?>
-                    <img class="" src="images/<?php echo $data['post_image'] ?>" alt="" />
-                </div>
+                    <div class="content swiper-slide">
+                        <div class="card-img">
+                            <img class="" src="images/<?php echo $data['post_image'] ?>" alt="" />
+                        </div>
 
-                <div class="description">
-                    <h2 class="title">
-                        <?php echo $data['post_title']; ?>
-                    </h2>
-                    <p class="author">
-                        পোস্ট করেছেনঃ
-                        <?php echo $data['post_author']; ?><span class="time">
-                            <?php echo $data['post_date']; ?>
-                        </span>
-                    </p>
-                    <p class="short">
-                        <?php echo substr($data['post_content'], 0, 340); ?>
-                    </p>
-                    <a href="post.php?view=<?php echo $data['post_id'] ?>" class="btn btn-success b">আরও পড়ুন...</a>
-                </div>
-
-                <div class="search-bar">
-                    <form action="search.php" method="post">
-                    <input class="hidden" name="value" type="text" placeholder="এখানে লিখুন..." />
-                    <button type="submit" name='search' class="btn btn-primary a"><i class="bi bi-search"></i> খুজুন</button>
-                    </form>
-                   
-                </div>
+                        <div class="description">
+                            <h2 class="title">
+                                <?php echo $data['post_title']; ?>
+                            </h2>
+                            <p class="author">
+                                পোস্ট করেছেনঃ
+                                <?php echo $data['post_author']; ?><span class="time">
+                                    <?php echo $data['post_date']; ?>
+                                </span>
+                            </p>
+                            <p class="short">
+                                <?php echo substr($data['post_content'], 0, 300); ?>
+                            </p>
+                            <a href="post.php?view=<?php echo $data['post_id'] ?>" class="btn btn-success b">আরও পড়ুন...</a>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
-        <?php } ?>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="search-bar">
+        <form action="search.php" method="post">
+            <input class="hidden" name="value" type="text" placeholder="এখানে লিখুন..." />
+            <button type="submit" name='search' class="btn btn-primary a"><i class="bi bi-search"></i>
+                খুজুন</button>
+        </form>
+    </div>
+    </div>
+    
+    </div>
+
     </div>
 </section>
 
@@ -56,9 +67,9 @@
 
             $query = "SELECT * FROM posts WHERE post_status='published' LIMIT $page_1,8";
             $execute = mysqli_query($connection, $query);
-            while ($data = mysqli_fetch_assoc($execute)) {?>
+            while ($data = mysqli_fetch_assoc($execute)) { ?>
 
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 16.5rem;">
                     <div class="inner">
                         <img class="card-img-top img-fluid" style="height:200px;width:100%"
                             src="images/<?php echo $data['post_image'] ?>" alt="Card image cap" />
@@ -66,15 +77,19 @@
 
                     <div class="card-body">
                         <h2 class="card-title">
-                            <?php echo $data['post_title'] ?>
+                            <?php if(strlen($data['post_title'])<=52){
+                           echo $data['post_title'];
+                            }else{
+                                  echo substr($data['post_title'],0,43)."...";  
+                            }?>
                         </h2>
                         <p class="card-text">
                             <?php echo substr($data['post_content'], 0, 200) ?><br>
-                            <a style="position:relative;botton:2px;" href="post.php?view=<?php echo $data['post_id'] ?>"
-                                class="btn btn-primary">সম্পূর্ণ পড়ুন...</a>
-                             
+                            
                         </p>
-                        
+                        <a style="position:relative;botton:2px;" href="post.php?view=<?php echo $data['post_id'] ?>"
+                                class="view btn btn-primary">সম্পূর্ণ পড়ুন...</a>
+
                     </div>
                 </div>
             <?php } ?>
@@ -95,3 +110,21 @@
     </nav>
 </section>
 <?php include "includes/footer.php" ?>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>

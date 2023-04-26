@@ -21,7 +21,9 @@ ob_start();
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/post_style.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <script src="js/bootstrap.js"></script>
+    <script src="css/swiper-bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="css/ad_style.css?v=<?php echo time(); ?>">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

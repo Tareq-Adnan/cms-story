@@ -10,8 +10,7 @@
 
     <div class="container">
 
-        <div class="content">
-
+    
             <div class="search-bar">
                 <form action="" method="post">
                     <input class="hidden" name="value" type="text" placeholder="এখানে লিখুন..." />
@@ -20,7 +19,7 @@
                 </form>
             </div>
 
-        </div>
+
 </section>
 
 <section class="mt-5">

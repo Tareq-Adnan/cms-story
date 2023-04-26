@@ -65,7 +65,8 @@ if($_SESSION['user_type']==null || $_SESSION['user_type']=='user'){
 
 							<div class="app-utility-item app-user-dropdown dropdown">
 								<a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#"
-									role="button" aria-expanded="false"><img src="assets/images/user.png"
+									role="button" aria-expanded="false">
+									<img src="../images/<?php echo $_SESSION['img'] ?>"
 										alt="user profile"></a>
 								<ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 									<li><a class="dropdown-item" href="../profile.php?user=<?php echo $_SESSION['user_id']; ?>">

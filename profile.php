@@ -122,7 +122,7 @@ if (isset($_GET['user'])) {
               <h4 class="mt-0 mb-0">
                 <?php echo $firstName . " " . $lastName ?>
               </h4>
-              <p class="small mb-4">Rank:<?php echo $userType ?></p>
+              <p class="small mb-4">Rank: <?php echo $userType ?></p>
             </div>
           </div>
         </div>

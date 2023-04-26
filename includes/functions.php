@@ -1,5 +1,26 @@
 <?php
 //select Category While Writing Story
+function resetPassowrd(){
+    if(isset($_POST['reset'])){
+        if(empty($_POST['email'])){
+            return "Please Enter your email";
+        }else{
+            $to=$_POST['email'];
+            $from="experiment.hunt@gmail.com";
+            $subject="Password Reset Link";
+            $message="Your Password Reset link is:";
+            $header="From: $from";
+
+            if(mail($to,$subject,$message,$header)){
+                return "a reset link is sent to your email";
+            }else{
+                return "mail sent failed.";
+            }
+            
+        }
+
+    }
+}
 function selectCat()
 {
     global $connection;
@@ -119,6 +140,7 @@ function login()
                 $uType = $data['user_type'];
                 $firstName = $data['first_name'];
                 $lastName = $data['last_name'];
+                $img=$data['user_image'];
 
             }
 
@@ -129,6 +151,7 @@ function login()
                 $_SESSION['user_type'] = $uType;
                 $_SESSION['first_name'] = $firstName;
                 $_SESSION['last_name'] = $lastName;
+                $_SESSION['img'] = $img;
 
                 header("Location: index.php");
             } else {
