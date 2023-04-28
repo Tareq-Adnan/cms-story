@@ -34,6 +34,10 @@
     height: 500px;
   }
 
+  .Related-post {
+    
+  }
+
   .container {
     box-sizing: border-box;
   }
@@ -47,6 +51,17 @@
     box-shadow: 0px 2px 1px rgba(152, 152, 152, 0.3);
     border-radius: 10px;
     width: 100%;
+
+  }
+  .contentp {
+
+    padding:  10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(25px);
+    box-shadow: 0px 2px 1px rgba(152, 152, 152, 0.3);
+    border-radius: 10px;
+    margin-left: -20px;
+    margin-bottom: 10px;
 
   }
 
@@ -69,6 +84,14 @@
     height: 30vh;
     display: block;
     max-width: 40vh;
+    border-radius: 10px;
+  }
+  .more-img img {
+    width: 100px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    float: right;
+    display: block;
     border-radius: 10px;
   }
 

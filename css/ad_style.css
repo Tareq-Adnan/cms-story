@@ -60,9 +60,15 @@
 .add_post_field_btn input:hover{
     background-color: #3b69ff4f;
 }
+.post_LatestStory{
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 .post_LatestStory .add-post{
    
     margin-bottom: 20%;
+    
 }
 .dropdown{
     width: 100%;

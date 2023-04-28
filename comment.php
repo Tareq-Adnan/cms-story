@@ -1,11 +1,11 @@
 <!-- Comment Page -->
 
-<div class="container">
+<div class="container ">
 
     <?php
     if (isset($_SESSION['username']) == NULL) { } else { ?>
 
-        <div class="comment_box">
+        <div class="comment_box col-9">
             <form action="" method="post">
                 <textarea class="form-control" name="comment" placeholder="আপনার মন্তব্য এখানে লিখুন..."
                     required></textarea>
@@ -29,7 +29,7 @@
             $date = $data['date'];
             ?>
 
-            <div class="card p-3  mb-2">
+            <div class="card p-3  mb-2 ">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user d-flex flex-row align-items-center">
                         <div class="user-img rounded-circle mr-5">
