@@ -3,7 +3,7 @@ include '../includes/db.php';
 ob_start();
 session_start();
 
-if($_SESSION['user_type']==null || $_SESSION['user_type']=='user'){
+if ($_SESSION['user_type'] == null || $_SESSION['user_type'] == 'user') {
 	header("Location: ../index.php");
 }
 
@@ -19,12 +19,12 @@ if($_SESSION['user_type']==null || $_SESSION['user_type']=='user'){
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- <script type="text/javascript">
-        window.history.forward();
-    </script> -->
+		window.history.forward();
+	</script> -->
 	<meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
 	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
 	<link rel="shortcut icon" href="favicon.ico">
-
+	
 	<!-- FontAwesome JS-->
 	<script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
 
@@ -40,12 +40,12 @@ if($_SESSION['user_type']==null || $_SESSION['user_type']=='user'){
 				<div class="app-header-content">
 					<div class="row justify-content-between align-items-center">
 
-						
+
 						<div class="search-mobile-trigger d-sm-none col">
-							
+
 						</div><!--//col-->
 						<div class="app-search-box col">
-							
+
 						</div><!--//app-search-box-->
 
 						<div class="app-utilities col-auto">
@@ -66,10 +66,10 @@ if($_SESSION['user_type']==null || $_SESSION['user_type']=='user'){
 							<div class="app-utility-item app-user-dropdown dropdown">
 								<a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#"
 									role="button" aria-expanded="false">
-									<img src="../images/<?php echo $_SESSION['img'] ?>"
-										alt="user profile"></a>
+									<img src="../images/<?php echo $_SESSION['img'] ?>" alt="user profile"></a>
 								<ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-									<li><a class="dropdown-item" href="../profile.php?user=<?php echo $_SESSION['user_id']; ?>">
+									<li><a class="dropdown-item"
+											href="../profile.php?user=<?php echo $_SESSION['user_id']; ?>">
 											<?php echo $_SESSION['username']; ?>
 										</a></li>
 									<li>
@@ -89,7 +89,7 @@ if($_SESSION['user_type']==null || $_SESSION['user_type']=='user'){
 				<a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
 				<div class="app-branding">
 					<a class="app-logo" href="index.php"><img class="logo-icon me-2" src="assets/images/app-logo.svg"
-							alt="logo"><span class="logo-text">PORTAL</span></a>
+							alt="logo"><span class="logo-text">ADMIN PANEL</span></a>
 
 				</div><!--//app-branding-->
 				<?php include 'includes/nav.php' ?>

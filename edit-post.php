@@ -69,6 +69,7 @@ EditPost($post_id);
                 </div>
 
             </div>
+           <?php $_SESSION['update']=1;?>
         </form>
     </div>
 </div>

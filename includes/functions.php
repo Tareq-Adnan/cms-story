@@ -1,22 +1,48 @@
 <?php
-//select Category While Writing Story
-function resetPassowrd(){
-    if(isset($_POST['reset'])){
-        if(empty($_POST['email'])){
-            return "Please Enter your email";
-        }else{
-            $to=$_POST['email'];
-            $from="experiment.hunt@gmail.com";
-            $subject="Password Reset Link";
-            $message="Your Password Reset link is:";
-            $header="From: $from";
 
-            if(mail($to,$subject,$message,$header)){
+function countUser()
+{
+    global $connection;
+    $session = session_id();
+    $time = time();
+    $timeOutsec = 30;
+    $timeout = $time - $timeOutsec;
+
+    $query = "SELECT * FROM users_online WHERE session='$session'";
+    $run = mysqli_query($connection, $query);
+    confirmation($run);
+    $count = mysqli_num_rows($run);
+
+    if ($count == null) {
+        mysqli_query($connection, "INSERT INTO users_online(session,time) VALUES('$session','$time')");
+
+    } else {
+        mysqli_query($connection, "UPDATE users_online SET time='$time' WHERE session='$session'");
+    }
+
+    $userOnline = mysqli_query($connection, "SELECT * FROM users_online WHERE time >'$timeout'");
+    return $count_user = mysqli_num_rows($userOnline);
+}
+
+//select Category While Writing Story
+function resetPassowrd()
+{
+    if (isset($_POST['reset'])) {
+        if (empty($_POST['email'])) {
+            return "Please Enter your email";
+        } else {
+            $to = $_POST['email'];
+            $from = "experiment.hunt@gmail.com";
+            $subject = "Password Reset Link";
+            $message = "Your Password Reset link is:";
+            $header = "From: $from";
+
+            if (mail($to, $subject, $message, $header)) {
                 return "a reset link is sent to your email";
-            }else{
+            } else {
                 return "mail sent failed.";
             }
-            
+
         }
 
     }
@@ -124,7 +150,7 @@ function login()
             $username = mysqli_real_escape_string($connection, $username);
             $password = mysqli_real_escape_string($connection, $password);
 
-            if(!checkUsername($username)){
+            if (!checkUsername($username)) {
                 return "ইউজারনেম পাওয়া যায়নি!";
             }
 
@@ -140,7 +166,7 @@ function login()
                 $uType = $data['user_type'];
                 $firstName = $data['first_name'];
                 $lastName = $data['last_name'];
-                $img=$data['user_image'];
+                $img = $data['user_image'];
 
             }
 
@@ -155,7 +181,7 @@ function login()
 
                 header("Location: index.php");
             } else {
-               return "ইউজারনেম বা পাসওয়ার্ড সঠিক নয়!";
+                return "ইউজারনেম বা পাসওয়ার্ড সঠিক নয়!";
             }
 
         }
@@ -393,32 +419,32 @@ function registration()
 
         move_uploaded_file($image_temp, "./images/$image");
 
-    if (checkUsername($username)) {
-        return $message = 'username already exits!';
+        if (checkUsername($username)) {
+            return $message = 'username already exits!';
 
-    } else if (checkEmail($email)) {
-        return $message = 'already registered with this email!';
-        ;
+        } else if (checkEmail($email)) {
+            return $message = 'already registered with this email!';
+            ;
 
-    } else if (strlen($username) < 4 || strlen($password) < 4) {
-        return $message = "the input should be greater than 4 character!";}
-        else{
+        } else if (strlen($username) < 4 || strlen($password) < 4) {
+            return $message = "the input should be greater than 4 character!";
+        } else {
             if (!empty($username) && !empty($password) && !empty($email)) {
-                
+
                 $query = "INSERT INTO users(username,user_type,user_email,user_image,first_name,last_name,password,date,status) VALUES('$username','user','$email','$image','$first_name','$last_name','$password',now(),'pending')";
                 $run = mysqli_query($connection, $query);
                 confirmation($run);
-    
+
                 return $message = "<p style='color:green;'>Regsitration Successful!</p>";
             } else {
                 return $message = "<p style='color: red;'>Field can't be empty!</p>";
             }
         }
 
-      
 
 
-      
+
+
 
 
     }

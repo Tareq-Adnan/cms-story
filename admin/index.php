@@ -1,4 +1,13 @@
-<?php include 'includes/admin_header.php' ?>
+<?php include 'includes/admin_header.php';
+
+
+
+ 
+
+
+
+
+?>
 <div class="app-wrapper">
 
 	<div class="app-content pt-3 p-md-3 p-lg-4">
@@ -107,6 +116,7 @@
 			</div><!--//row-->
 		</div><!--//app-card-->
 	</div><!--//col-->
+	
 </div><!--//row-->
 
 </div><!--//container-fluid-->

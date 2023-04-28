@@ -3,6 +3,7 @@
 if($_SESSION['user_type']==null){
 	header("Location: index.php");
 }
+
 deletePost(); //Method for delete posts request
 notify(); //after completing any operation a notification popup will appear
 ?>
@@ -151,6 +152,7 @@ if (isset($_GET['user'])) {
         </div>
         <div class="px-4 py-3">
           <h5 class="mb-0 py-2 px-2">অনুমোদিত গল্পসমূহ</h5>
+          
           <div class="p-4 rounded shadow-sm ">
 
             <table class="table table-bordered table-hover text-center">
