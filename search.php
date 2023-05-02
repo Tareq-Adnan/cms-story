@@ -61,17 +61,6 @@
             <?php } ?>
         </div>
     </div>
-    <nav class="app-pagination mt-5">
-        <ul class="pagination justify-content-center">
-
-            <?php //Showing the total page number using loop.
-            for ($i = 1; $i <= $rowCount; $i++) {
-                ?>
-                <li class="page-item active"><a class="page-link" href="search.php?page=<?php echo $i ?>"><?php echo $i ?></a>
-                </li>
-
-            <?php } ?>
-        </ul>
-    </nav>
+    
 </section>
 <?php include "includes/footer.php" ?>

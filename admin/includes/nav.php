@@ -19,7 +19,9 @@
 	$val4="";
 	$val5="active";
  }
-
+ if(isset($_GET['publish'])){
+	header("Location: pending.php");
+}
 ?>
 
 <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
@@ -57,10 +59,21 @@
 						</li><!--//nav-item-->
 
 						<li class="nav-item">
+						<?php
+								$query = "SELECT * FROM posts WHERE post_status='pending'";
+								$run = mysqli_query($connection, $query);
+								confirmation($run);
+								$num=mysqli_num_rows($run);
+								if($num==0){
+									$hide="hide";
+								}else{
+									$hide="";
+								}
+								?>
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 							<a class="nav-link <?php echo $val3?>" href="pending.php">
 								<span class="nav-icon">
-									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list"
+								<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list"
 										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 										<path fill-rule="evenodd"
 											d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
@@ -71,7 +84,8 @@
 										<circle cx="3.5" cy="10.5" r=".5" />
 									</svg>
 								</span>
-								<span class="nav-link-text">Pending Posts</span>
+								
+								<span class="nav-link-text">Pending Posts</span><span class="notify <?php echo $hide ?>"><?php echo $num;?></span>
 							</a><!--//nav-link-->
 						</li><!--//nav-item-->
 

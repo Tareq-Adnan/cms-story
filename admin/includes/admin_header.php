@@ -30,6 +30,7 @@ if ($_SESSION['user_type'] == null || $_SESSION['user_type'] == 'user') {
 
 	<!-- App CSS -->
 	<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+	<link rel="stylesheet" href="assets/css/notify.css">
 
 </head>
 

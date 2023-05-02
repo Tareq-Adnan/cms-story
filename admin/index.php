@@ -1,12 +1,4 @@
 <?php include 'includes/admin_header.php';
-
-
-
- 
-
-
-
-
 ?>
 <div class="app-wrapper">
 

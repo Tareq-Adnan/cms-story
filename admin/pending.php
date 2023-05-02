@@ -1,6 +1,8 @@
 <?php include 'includes/admin_header.php';
 publish();//method for catch pending to publish request
 notify();
+
+
 ?>
 <div class="app-wrapper">
 	<div class="app-content pt-3 p-md-3 p-lg-4">

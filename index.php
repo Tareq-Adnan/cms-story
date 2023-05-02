@@ -100,12 +100,16 @@
         <ul class="pagination justify-content-center">
             <!-- page number list  -->
             <?php
+            
             for ($i = 1; $i <= $num; $i++) {
-                ?>
-                <li class="page-item active"><a class="page-link" href="index.php?page=<?php echo $i ?>"><?php echo $i ?></a>
+                if(isset($_GET['page']) && $i==$_GET['page']){?>
+                    <li class="page-item active"><a class="page-link" href="index.php?page=<?php echo $i ?>"><?php echo $i ?></a>
+                    </li>
+              <?php  }else{?>
+                <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $i ?>"><?php echo $i ?></a>
                 </li>
-
-            <?php } ?>
+              <?php }
+                } ?>
         </ul>
     </nav>
 </section>

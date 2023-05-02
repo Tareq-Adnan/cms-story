@@ -61,6 +61,8 @@ function selectCat()
 
 }
 
+
+
 function pagination()
 {
     global $connection;
@@ -70,6 +72,7 @@ function pagination()
     } else {
         $page = "";
     }
+    
 
     if ($page == "" || $page == 1) {
         return $page_1 = 0;
@@ -77,6 +80,7 @@ function pagination()
         return $page_1 = ($page * 6) - 6;
     }
 }
+
 
 function comment()
 {

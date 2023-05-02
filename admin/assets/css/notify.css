@@ -1,0 +1,14 @@
+ /* notify */
+ .notify {
+     padding: 2px 8px;
+     background-color: red;
+     color: white;
+     border-radius: 10px;
+     z-index: 9;
+     position: relative;
+margin: 5px;
+ }
+
+ .hide{
+    visibility: hidden;
+ }
